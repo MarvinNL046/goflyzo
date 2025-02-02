@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: '.next',
+  output: 'export',
   images: {
-    domains: ['images.unsplash.com']
+    domains: ['images.unsplash.com'],
+    unoptimized: true
   }
 }
 
