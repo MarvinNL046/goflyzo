@@ -17,6 +17,8 @@ interface ImageCarouselProps {
 export default function ImageCarousel({
   images,
   interval = 5000,
+  width,
+  height,
   className = '',
 }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,11 +33,11 @@ export default function ImageCarousel({
 
   return (
     <div 
-      className={`relative ${className}`}
+      className={`relative bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden ${className}`}
       style={{ 
         width: '100%',
-        height: '400px',
-        maxWidth: '600px',
+        height: `${height}px`,
+        maxWidth: `${width}px`,
         margin: '0 auto'
       }}
     >
@@ -43,16 +45,15 @@ export default function ImageCarousel({
         <div
           key={image.src}
           className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentIndex ? 'opacity-100 z-[1]' : 'opacity-0 z-0'
+            index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
-          style={{ position: 'relative', height: '100%' }}
         >
           <Image
             src={image.src}
             alt={image.alt}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-            className="rounded-lg shadow-xl object-cover"
+            className="object-cover rounded-lg shadow-xl"
             priority={index === 0}
           />
         </div>
