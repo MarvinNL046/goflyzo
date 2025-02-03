@@ -1,0 +1,67 @@
+{
+  "products": [
+    {
+      "id": "luggage-1",
+      "title": "Samsonite Winfield 2 Hardside Luggage",
+      "description": "Durable polycarbonate hardside spinner luggage with TSA-approved lock and expandable design. Perfect for international travel.",
+      "price": 159.99,
+      "rating": 4.7,
+      "image": "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?auto=format&fit=crop&w=800&q=80",
+      "category": "Luggage & Bags",
+      "brand": "Samsonite",
+      "badge": "Best Seller"
+    },
+    {
+      "id": "electronics-1",
+      "title": "Universal Travel Adapter",
+      "description": "All-in-one international power adapter with USB ports. Compatible with outlets in 150+ countries.",
+      "price": 24.99,
+      "rating": 4.5,
+      "image": "https://images.unsplash.com/photo-1621972750749-0fbb1abb7736?auto=format&fit=crop&w=800&q=80",
+      "category": "Travel Electronics",
+      "brand": "PowerTech",
+      "badge": "Top Rated"
+    },
+    {
+      "id": "comfort-1",
+      "title": "Memory Foam Travel Pillow",
+      "description": "Ergonomic neck pillow with memory foam core and breathable cover. Includes carrying case.",
+      "price": 29.99,
+      "rating": 4.3,
+      "image": "https://images.unsplash.com/photo-1520443397534-b07f05ce1f48?auto=format&fit=crop&w=800&q=80",
+      "category": "Comfort Items",
+      "brand": "TravelRest"
+    },
+    {
+      "id": "organization-1",
+      "title": "Packing Cubes Set",
+      "description": "6-piece compression packing cube set with water-resistant nylon. Includes laundry bag.",
+      "price": 39.99,
+      "rating": 4.8,
+      "image": "https://images.unsplash.com/photo-1581553680321-4fffae59fccd?auto=format&fit=crop&w=800&q=80",
+      "category": "Packing & Organization",
+      "brand": "Eagle Creek",
+      "badge": "Best Value"
+    },
+    {
+      "id": "electronics-2",
+      "title": "Portable Power Bank",
+      "description": "20000mAh high-capacity power bank with fast charging. TSA-approved for carry-on luggage.",
+      "price": 49.99,
+      "rating": 4.6,
+      "image": "https://images.unsplash.com/photo-1609592424857-84268ed0ff5a?auto=format&fit=crop&w=800&q=80",
+      "category": "Travel Electronics",
+      "brand": "Anker"
+    },
+    {
+      "id": "safety-1",
+      "title": "RFID Travel Wallet",
+      "description": "Genuine leather wallet with RFID blocking technology. Multiple compartments for passport and cards.",
+      "price": 34.99,
+      "rating": 4.4,
+      "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80",
+      "category": "Safety & Security",
+      "brand": "Travelon"
+    }
+  ]
+}
