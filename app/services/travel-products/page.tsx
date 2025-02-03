@@ -165,33 +165,33 @@ const additionalFields = (
 );
 
 export default function TravelProductsPage() {
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Products Section */}
-      <section className="pt-8 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-              Essential Travel Products
-            </h1>
-            <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
-              Hand-picked travel essentials for your next adventure
-            </p>
-          </div>
-          
-          <ProductGrid products={productsData.products} />
+  const productsSection = (
+    <section className="bg-white dark:bg-gray-900 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+            Featured Products
+          </h2>
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            Hand-picked travel essentials for your next adventure
+          </p>
         </div>
-      </section>
+        
+        <ProductGrid products={productsData.products} />
+      </div>
+    </section>
+  );
 
-      <ServicePageTemplate
-        title="Find Your Perfect Travel Gear"
-        description="Discover and compare the best travel gear and accessories. Find everything you need for your next journey from trusted brands worldwide."
-        heroImage="https://images.unsplash.com/photo-1553531384-cc64ac80f931"
-        features={features}
-        searchLabel="Search Products"
-        searchPlaceholder="Search travel products"
-        additionalFields={additionalFields}
-      />
-    </div>
+  return (
+    <ServicePageTemplate
+      title="Find Your Perfect Travel Gear"
+      description="Discover and compare the best travel gear and accessories. Find everything you need for your next journey from trusted brands worldwide."
+      heroImage="https://images.unsplash.com/photo-1553531384-cc64ac80f931"
+      features={features}
+      searchLabel="Search Products"
+      searchPlaceholder="Search travel products"
+      additionalFields={additionalFields}
+      afterHeroContent={productsSection}
+    />
   );
 }

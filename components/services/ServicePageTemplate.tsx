@@ -20,6 +20,7 @@ interface ServicePageTemplateProps {
   additionalFields?: JSX.Element;
   affiliateLink?: string;
   affiliateWidget?: string;
+  afterHeroContent?: React.ReactNode;
 }
 
 const ServicePageTemplate: FC<ServicePageTemplateProps> = ({
@@ -32,6 +33,7 @@ const ServicePageTemplate: FC<ServicePageTemplateProps> = ({
   additionalFields,
   affiliateLink,
   affiliateWidget,
+  afterHeroContent,
 }) => {
   return (
     <div className="bg-white dark:bg-gray-900">
@@ -62,6 +64,9 @@ const ServicePageTemplate: FC<ServicePageTemplateProps> = ({
           </div>
         </div>
       </div>
+
+      {/* After Hero Content */}
+      {afterHeroContent}
 
       {/* Search Section */}
       <div id="search" className="py-24 bg-gray-50 dark:bg-gray-800">
