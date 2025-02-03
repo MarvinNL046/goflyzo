@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -21,13 +20,30 @@ export default function Header() {
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm">
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex flex-col lg:flex-row lg:items-center">
-          <div className="flex justify-between items-center lg:w-auto lg:absolute lg:left-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="flex justify-between items-center h-16">
+          <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold text-blue-600">
               GoFlyzo
             </Link>
+          </div>
 
+          {/* Desktop navigation */}
+          <div className="hidden lg:flex lg:justify-center lg:flex-1">
+            <div className="flex space-x-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap text-sm"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center">
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -57,24 +73,11 @@ export default function Header() {
               </svg>
             </button>
           </div>
-
-          {/* Desktop navigation */}
-          <div className="hidden lg:flex items-center justify-center space-x-6 lg:flex-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap text-sm"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
+        </nav>
 
         {/* Mobile navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 space-y-2">
+          <div className="lg:hidden py-4 space-y-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -87,7 +90,7 @@ export default function Header() {
             ))}
           </div>
         )}
-      </nav>
+      </div>
     </header>
   );
 }

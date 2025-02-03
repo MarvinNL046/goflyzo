@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss';
-import forms from '@tailwindcss/forms';
 
 const config: Config = {
   content: [
@@ -7,22 +6,26 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'media',
+  darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        primary: 'var(--primary)',
-        'primary-dark': 'var(--primary-dark)',
-        secondary: 'var(--secondary)',
-        'secondary-dark': 'var(--secondary-dark)',
-        accent: 'var(--accent)',
-        'accent-dark': 'var(--accent-dark)',
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateX(-10px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
-  plugins: [forms],
+  plugins: [],
 };
 
 export default config;
