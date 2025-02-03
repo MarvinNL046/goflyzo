@@ -1,4 +1,3 @@
-import { GeistMono } from 'geist/font';
 import './globals.css';
 import { Providers } from './providers';
 import Header from '@/components/common/Header';
@@ -6,8 +5,7 @@ import Footer from '@/components/common/Footer';
 import TopBar from '@/components/common/TopBar';
 import PreFooterBar from '@/components/common/PreFooterBar';
 import { Analytics } from '@vercel/analytics/react';
-
-const geistMono = GeistMono;
+import ThemeToggle from '@/components/common/ThemeToggle';
 
 export const metadata = {
   title: 'GoFlyzo - Your Travel Companion',
@@ -43,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistMono.className} antialiased`}>
+      <body className="antialiased">
         <Providers>
           <div className="min-h-screen flex flex-col">
             <TopBar />
@@ -52,6 +50,7 @@ export default function RootLayout({
             <PreFooterBar />
             <Footer />
           </div>
+          <ThemeToggle />
         </Providers>
         <Analytics />
       </body>
