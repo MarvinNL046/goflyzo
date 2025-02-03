@@ -1,60 +1,84 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { getCountries, getLocationsByCountry, createSlug } from "../utils/locations";
+import { getAllCountries } from '@/lib/locations';
+import Link from 'next/link';
+import { generateLocationSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
-export const metadata: Metadata = {
-  title: "Travel Destinations | GoFlyzo",
-  description: "Explore our comprehensive list of travel destinations worldwide. Find the best deals on hotels, flights, and more.",
+export const metadata = {
+  title: 'Travel Destinations | GoFlyzo',
+  description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
+  openGraph: {
+    title: 'Travel Destinations | GoFlyzo',
+    description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
+    images: [
+      {
+        url: 'https://goflyzo.com/api/og?title=Travel+Destinations&subtitle=Explore+amazing+places+around+the+world',
+        width: 1200,
+        height: 630,
+        alt: 'GoFlyzo Travel Destinations',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Travel Destinations | GoFlyzo',
+    description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
+    images: ['https://goflyzo.com/api/og?title=Travel+Destinations&subtitle=Explore+amazing+places+around+the+world'],
+  },
 };
 
 export default function LocationsPage() {
-  const countries = getCountries();
+  const countries = getAllCountries();
+
+  // Generate schema data
+  const destinationsSchema = generateLocationSchema(
+    'Travel Destinations',
+    'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
+    'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800',
+    'https://goflyzo.com/locations',
+    'country'
+  );
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Destinations', url: '/locations' },
+  ]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Hero Section */}
-      <div className="bg-blue-600 text-white py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([destinationsSchema, breadcrumbSchema]),
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             Travel Destinations
           </h1>
-          <p className="text-xl md:text-2xl">
-            Explore amazing destinations around the world
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Explore our curated list of destinations around the world, complete with local insights and travel tips.
           </p>
         </div>
-      </div>
 
-      {/* Countries Section */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-6">
-          {countries.map((country) => {
-            const locations = getLocationsByCountry(country);
-            return (
-              <div key={country} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
-                <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {countries.map((country) => (
+            <Link
+              key={country}
+              href={`/locations/${encodeURIComponent(country.toLowerCase())}`}
+              className="block bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+            >
+              <div className="p-6">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
                   {country}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-                  {locations.map((location) => (
-                    <Link
-                      key={location.slug}
-                      href={`/locations/${createSlug(location.country)}/${createSlug(location.city)}`}
-                      className="block p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-                    >
-                      <h3 className="font-semibold text-gray-900 dark:text-white">
-                        {location.city}
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                        {location.services.length} services available
-                      </p>
-                    </Link>
-                  ))}
-                </div>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Explore destinations in {country}
+                </p>
               </div>
-            );
-          })}
+            </Link>
+          ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }

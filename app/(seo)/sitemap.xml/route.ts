@@ -1,8 +1,14 @@
-import { getAllLocations } from '@/lib/locations';
+import { BlogPost, getAllPosts } from '@/lib/blog';
+
+interface SitemapURL {
+  loc: string;
+  priority: number;
+  changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+}
 
 export async function GET() {
-  const locations = getAllLocations();
-  const staticUrls = [
+  const posts = getAllPosts();
+  const staticUrls: SitemapURL[] = [
     { loc: '/', priority: 1.0, changefreq: 'weekly' },
     { loc: '/contact', priority: 0.5, changefreq: 'monthly' },
     { loc: '/locations', priority: 0.8, changefreq: 'weekly' },
@@ -14,15 +20,16 @@ export async function GET() {
     { loc: '/services/car-rental', priority: 0.8, changefreq: 'weekly' },
     { loc: '/services/ferry-services', priority: 0.8, changefreq: 'weekly' },
     { loc: '/services/travel-products', priority: 0.8, changefreq: 'weekly' },
+    { loc: '/blog', priority: 0.8, changefreq: 'daily' },
   ];
 
-  const locationUrls = locations.map(location => ({
-    loc: `/locations/${encodeURIComponent(location.country.toLowerCase())}/${encodeURIComponent(location.city.toLowerCase())}`,
+  const blogUrls: SitemapURL[] = posts.map((post: BlogPost) => ({
+    loc: `/blog/${post.slug}`,
     priority: 0.7,
     changefreq: 'weekly',
   }));
 
-  const allUrls = [...staticUrls, ...locationUrls];
+  const allUrls = [...staticUrls, ...blogUrls];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allUrls.map(url => `  <url>

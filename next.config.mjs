@@ -1,23 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com'],
-    deviceSizes: [640, 768, 1024, 1200],
-    imageSizes: [400, 600, 800],
-    formats: ['image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+    ],
   },
-  output: 'standalone',
-  distDir: '.next',
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['@heroicons/react'],
     scrollRestoration: true,
   },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-  poweredByHeader: false,
-  compress: true,
-}
+};
 
-export default nextConfig
+export default nextConfig;

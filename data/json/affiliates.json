@@ -1,8 +1,33 @@
 {
-  "esims": {
+  "affiliates": {
     "airalo": {
-      "link": "https://airalo.tp.st/U13cYHox",
-      "widget": "<script async src=\"https://tp.media/content?trs=384595&shmarker=602467&locale=en&powered_by=true&color_button=%232563eb&color_focused=%231d4ed8&secondary=%23f9fafb&dark=%231f2937&light=%23FFFFFF&special=%23e5e7eb&border_radius=8&plain=false&no_labels=true&promo_id=8588&campaign_id=541\" charset=\"utf-8\"></script>"
+      "name": "Airalo",
+      "description": "Get instant mobile data access worldwide with Airalo eSIM. Easy setup, affordable rates, and coverage in 190+ countries.",
+      "url": "https://www.airalo.com",
+      "logo": "https://placehold.co/200x100/0066FF/FFFFFF.png?text=Airalo",
+      "primaryColor": "#0066FF",
+      "secondaryColor": "#E6F0FF",
+      "textColor": "#FFFFFF",
+      "features": [
+        "Coverage in 190+ countries",
+        "Instant digital delivery",
+        "Easy QR code activation",
+        "24/7 customer support",
+        "Flexible data plans",
+        "Multiple device support"
+      ],
+      "benefits": [
+        "No physical SIM card needed",
+        "Activate before you travel",
+        "Keep your existing number",
+        "Connect instantly upon arrival",
+        "Affordable regional plans",
+        "Reliable network coverage"
+      ],
+      "cta": {
+        "text": "Get Your eSIM Now",
+        "url": "https://www.airalo.com"
+      }
     }
   }
 }

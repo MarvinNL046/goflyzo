@@ -1,101 +1,155 @@
-import { Metadata } from "next";
-import Image from "next/image";
-import { getLocationBySlug } from "../../../utils/locations";
-import { notFound } from "next/navigation";
+import { getLocationByCountryAndCity } from '@/lib/locations';
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import { generateLocationSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
-interface LocationPageProps {
+interface PageProps {
   params: {
     country: string;
     city: string;
   };
 }
 
-export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
-  const location = getLocationBySlug(params.country, params.city);
-  
+export async function generateMetadata({ params }: PageProps) {
+  const country = decodeURIComponent(params.country);
+  const city = decodeURIComponent(params.city);
+  const location = getLocationByCountryAndCity(country, city);
+
   if (!location) {
-    return {
-      title: 'Location Not Found | GoFlyzo',
-      description: 'The requested travel destination could not be found.'
-    };
+    return {};
   }
 
+  const ogUrl = new URL('https://goflyzo.com/api/og');
+  ogUrl.searchParams.set('title', `${location.city}, ${location.country}`);
+  ogUrl.searchParams.set('subtitle', location.description);
+  ogUrl.searchParams.set('image', location.image);
+
   return {
-    title: location.meta.title,
-    description: location.meta.description,
+    title: `${location.city}, ${location.country} Travel Guide | GoFlyzo`,
+    description: location.description,
     openGraph: {
-      title: location.meta.title,
-      description: location.meta.description,
+      title: `${location.city}, ${location.country} Travel Guide | GoFlyzo`,
+      description: location.description,
       images: [
         {
-          url: location.image,
+          url: ogUrl.toString(),
           width: 1200,
           height: 630,
-          alt: `${location.city}, ${location.country}`,
+          alt: `Travel guide for ${location.city}, ${location.country}`,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${location.city}, ${location.country} Travel Guide | GoFlyzo`,
+      description: location.description,
+      images: [ogUrl.toString()],
     },
   };
 }
 
-export default function LocationPage({ params }: LocationPageProps) {
-  const location = getLocationBySlug(params.country, params.city);
+export default function CityPage({ params }: PageProps) {
+  const country = decodeURIComponent(params.country);
+  const city = decodeURIComponent(params.city);
+  const location = getLocationByCountryAndCity(country, city);
 
   if (!location) {
     notFound();
   }
 
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[400px] w-full">
-        <Image
-          src={location.image}
-          alt={`${location.city}, ${location.country}`}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50">
-          <div className="container mx-auto px-4 h-full flex items-center">
-            <div className="text-white max-w-3xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                {location.city}, {location.country}
-              </h1>
-              <p className="text-xl md:text-2xl">
-                {location.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+  const services = location.services.split(',').map(s => s.trim());
 
-      {/* Services Section */}
-      <div className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-            Available Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {location.services.map((service: string, index: number) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
-              >
-                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
-                  {service}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Find the best {service.toLowerCase()} deals in {location.city}
-                </p>
-                <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
-                  Search {service}
-                </button>
+  // Generate schema data
+  const citySchema = generateLocationSchema(
+    `${location.city}, ${location.country}`,
+    location.description,
+    location.image,
+    `https://goflyzo.com/locations/${encodeURIComponent(location.country.toLowerCase())}/${encodeURIComponent(location.city.toLowerCase())}`,
+    'city'
+  );
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Destinations', url: '/locations' },
+    { name: location.country, url: `/locations/${encodeURIComponent(location.country.toLowerCase())}` },
+    { name: location.city, url: `/locations/${encodeURIComponent(location.country.toLowerCase())}/${encodeURIComponent(location.city.toLowerCase())}` },
+  ]);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([citySchema, breadcrumbSchema]),
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Image Section */}
+          <div className="relative h-[400px] lg:h-[600px] rounded-lg overflow-hidden">
+            <Image
+              src={location.image}
+              alt={`${location.city}, ${location.country}`}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+
+          {/* Content Section */}
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              {location.city}, {location.country}
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              {location.description}
+            </p>
+
+            {/* Available Services */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                Available Services
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {services.map((service: string) => (
+                  <Link
+                    key={service}
+                    href={`/services/${service.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <span className="text-gray-900 dark:text-gray-100">
+                      {service}
+                    </span>
+                  </Link>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Back to Country */}
+            <Link
+              href={`/locations/${encodeURIComponent(location.country.toLowerCase())}`}
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              <svg
+                className="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Back to {location.country} destinations
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

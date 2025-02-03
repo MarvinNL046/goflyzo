@@ -15,6 +15,7 @@ export default function Header() {
     { name: 'Ferry Services', href: '/services/ferry-services' },
     { name: 'Travel Gear', href: '/services/travel-products' },
     { name: 'Destinations', href: '/locations' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' }
   ];
 
