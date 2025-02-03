@@ -1,15 +1,39 @@
-import type { Metadata } from 'next';
+import { GeistMono } from 'geist/font';
 import './globals.css';
-import Header from '../components/common/Header';
-import ThemeToggle from '../components/common/ThemeToggle';
-import Footer from '../components/common/Footer';
-import TopBar from '../components/common/TopBar';
-import PreFooterBar from '../components/common/PreFooterBar';
 import { Providers } from './providers';
+import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
+import TopBar from '@/components/common/TopBar';
+import PreFooterBar from '@/components/common/PreFooterBar';
+import { Analytics } from '@vercel/analytics/react';
 
-export const metadata: Metadata = {
+const geistMono = GeistMono;
+
+export const metadata = {
   title: 'GoFlyzo - Your Travel Companion',
-  description: 'Find the best deals on hotels, flights, eSIMs, and more for your next adventure.',
+  description: 'Find the best travel deals, compare prices, and book your next adventure with GoFlyzo.',
+  openGraph: {
+    title: 'GoFlyzo - Your Travel Companion',
+    description: 'Find the best travel deals, compare prices, and book your next adventure with GoFlyzo.',
+    url: 'https://goflyzo.com',
+    siteName: 'GoFlyzo',
+    images: [
+      {
+        url: 'https://goflyzo.com/api/og?title=GoFlyzo&subtitle=Your+Travel+Companion',
+        width: 1200,
+        height: 630,
+        alt: 'GoFlyzo - Your Travel Companion',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GoFlyzo - Your Travel Companion',
+    description: 'Find the best travel deals, compare prices, and book your next adventure with GoFlyzo.',
+    images: ['https://goflyzo.com/api/og?title=GoFlyzo&subtitle=Your+Travel+Companion'],
+  },
 };
 
 export default function RootLayout({
@@ -19,19 +43,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+      <body className={`${geistMono.className} antialiased`}>
         <Providers>
-          <div className="flex flex-col min-h-screen">
+          <div className="min-h-screen flex flex-col">
             <TopBar />
             <Header />
-            <ThemeToggle />
-            <main className="flex-grow">
-              {children}
-            </main>
+            <main className="flex-grow">{children}</main>
             <PreFooterBar />
             <Footer />
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
