@@ -5,6 +5,7 @@ import Footer from '@/components/common/Footer';
 import TopBar from '@/components/common/TopBar';
 import PreFooterBar from '@/components/common/PreFooterBar';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import ThemeToggle from '@/components/common/ThemeToggle';
 
 export const metadata = {
@@ -53,6 +54,7 @@ export default function RootLayout({
           <ThemeToggle />
         </Providers>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
