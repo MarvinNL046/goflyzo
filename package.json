@@ -2,11 +2,15 @@
   "name": "goflyzo",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/generate-sitemap.js && node scripts/generate-service-areas-sitemap.js && node scripts/generate-products-sitemap.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "generate-service-areas-sitemap": "node scripts/generate-service-areas-sitemap.js",
+    "generate-products-sitemap": "node scripts/generate-products-sitemap.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.48.1",
@@ -24,7 +28,8 @@
     "react-dom": "^18",
     "react-markdown": "^9.0.3",
     "tailwind-merge": "^3.0.1",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "papaparse": "^5.5.1"
   },
   "devDependencies": {
     "@types/node": "^20.17.16",
