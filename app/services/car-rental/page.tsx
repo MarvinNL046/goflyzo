@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ServicePageTemplate from "../../../components/services/ServicePageTemplate";
+import CarGrid from "../../../components/services/CarGrid";
 
 export const metadata: Metadata = {
   title: "Car Rental - Find Your Perfect Vehicle",
@@ -142,6 +143,7 @@ export default function CarRentalPage() {
       searchLabel="Search Vehicles"
       searchPlaceholder="Enter pickup location"
       additionalFields={additionalFields}
+      afterHeroContent={<CarGrid />}
     />
   );
 }

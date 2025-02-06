@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ServicePageTemplate from "../../../components/services/ServicePageTemplate";
+import InsuranceGrid from "../../../components/services/InsuranceGrid";
 
 export const metadata: Metadata = {
   title: "Travel Insurance - Protect Your Journey",
@@ -142,6 +143,7 @@ export default function TravelInsurancePage() {
       searchLabel="Find Insurance Plans"
       searchPlaceholder="Enter your destination"
       additionalFields={additionalFields}
+      afterHeroContent={<InsuranceGrid />}
     />
   );
 }

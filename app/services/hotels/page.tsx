@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ServicePageTemplate from "../../../components/services/ServicePageTemplate";
+import HotelGrid from "../../../components/services/HotelGrid";
 
 export const metadata: Metadata = {
   title: "Book Hotels Worldwide",
@@ -116,6 +117,7 @@ export default function HotelsPage() {
       searchLabel="Search Hotels"
       searchPlaceholder="Enter city or hotel name"
       additionalFields={additionalFields}
+      afterHeroContent={<HotelGrid />}
     />
   );
 }

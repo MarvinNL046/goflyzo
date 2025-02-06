@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ServicePageTemplate from "../../../components/services/ServicePageTemplate";
+import FlightGrid from "../../../components/services/FlightGrid";
 
 export const metadata: Metadata = {
   title: "Book Flights Worldwide",
@@ -140,6 +141,7 @@ export default function FlightsPage() {
       searchLabel="Search Flights"
       searchPlaceholder="Where would you like to go?"
       additionalFields={additionalFields}
+      afterHeroContent={<FlightGrid />}
     />
   );
 }

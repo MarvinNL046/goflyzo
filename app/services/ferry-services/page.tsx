@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ServicePageTemplate from "../../../components/services/ServicePageTemplate";
+import FerryGrid from "../../../components/services/FerryGrid";
 
 export const metadata: Metadata = {
   title: "Ferry Services - Book Your Sea Journey",
@@ -143,6 +144,7 @@ export default function FerryServicesPage() {
       searchLabel="Search Ferry Routes"
       searchPlaceholder="Enter departure or destination port"
       additionalFields={additionalFields}
+      afterHeroContent={<FerryGrid />}
     />
   );
 }
