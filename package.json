@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/generate-sitemap.js && node scripts/generate-service-areas-sitemap.js && node scripts/generate-products-sitemap.js",
+    "build": "next build && node scripts/generate-sitemap.js && node scripts/generate-service-areas-sitemap.js && node scripts/generate-products-sitemap.js && node scripts/generate-blog-sitemap.js",
     "start": "next start",
     "lint": "next lint",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "generate-service-areas-sitemap": "node scripts/generate-service-areas-sitemap.js",
-    "generate-products-sitemap": "node scripts/generate-products-sitemap.js"
+    "generate-products-sitemap": "node scripts/generate-products-sitemap.js",
+    "generate-blog-sitemap": "node scripts/generate-blog-sitemap.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.48.1",
