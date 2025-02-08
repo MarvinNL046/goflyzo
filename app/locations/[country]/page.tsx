@@ -1,8 +1,10 @@
 import { getLocationsByCountry, getAllCountries } from '@/lib/locations';
+import { getServerSupabase } from '@/lib/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { generateLocationSchema, generateBreadcrumbSchema } from '@/lib/schema';
+import AIContent from '@/components/locations/AIContent';
 
 interface PageProps {
   params: {
@@ -54,12 +56,33 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default function CountryPage({ params }: PageProps) {
+export default async function CountryPage({ params }: PageProps) {
   const country = decodeURIComponent(params.country);
   const locations = getLocationsByCountry(country);
 
   if (!locations.length) {
     notFound();
+  }
+
+  // Fetch AI content from Supabase
+  const supabase = await getServerSupabase();
+  console.log('Fetching content for country:', country.toLowerCase());
+  const { data: aiContent, error } = await supabase
+    .from('location_content')
+    .select('*')
+    .eq('country', country.toLowerCase())
+    .order('last_updated', { ascending: false })
+    .limit(1)
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') {
+      console.log('No content found for country:', country);
+    } else {
+      console.error('Error fetching location content:', error);
+    }
+  } else {
+    console.log('Found content for country:', country, aiContent);
   }
 
   // Generate schema data
@@ -94,6 +117,16 @@ export default function CountryPage({ params }: PageProps) {
             Explore our curated list of destinations in {locations[0].country}, complete with local insights and travel tips.
           </p>
         </div>
+
+        {aiContent && aiContent.content && (
+          <div className="mb-12">
+            <AIContent 
+              country={locations[0].country}
+              content={aiContent.content}
+              lastUpdated={aiContent.last_updated}
+            />
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {locations.map((location) => (
