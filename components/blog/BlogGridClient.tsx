@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import BlogCard from './BlogCard';
 
 interface BlogPost {
@@ -9,12 +12,17 @@ interface BlogPost {
   category: string;
 }
 
-interface BlogGridProps {
+interface BlogGridClientProps {
   posts: BlogPost[];
 }
 
-export default function BlogGrid({ posts }: BlogGridProps) {
+export default function BlogGridClient({ posts }: BlogGridClientProps) {
+  useEffect(() => {
+    console.log('Client-side posts:', JSON.stringify(posts, null, 2));
+  }, [posts]);
+
   if (!posts || posts.length === 0) {
+    console.log('No posts found');
     return (
       <div className="text-center py-12">
         <p className="text-gray-600 dark:text-gray-400">No blog posts found.</p>

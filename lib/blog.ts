@@ -1,5 +1,4 @@
-import fs from 'fs';
-import path from 'path';
+import { supabase } from './supabase';
 
 export interface BlogPost {
   slug: string;
@@ -13,44 +12,134 @@ export interface BlogPost {
   category: string;
 }
 
-interface BlogData {
-  posts: BlogPost[];
+interface KbArticleMetadata {
+  type: string;
+  excerpt: string;
+  author: string;
+  tags: string[];
+  category: string;
+  coverImage: string;
 }
 
-function getBlogData(): BlogData {
-  const filePath = path.join(process.cwd(), 'data', 'json', 'blog-posts.json');
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(fileContents);
+interface KbArticle {
+  id: string;
+  category_id: string;
+  title: string;
+  content: string;
+  metadata: KbArticleMetadata;
+  created_at: string;
 }
 
-export function getAllPosts(): BlogPost[] {
-  const { posts } = getBlogData();
-  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+function mapKbArticleToBlogPost(article: KbArticle): BlogPost {
+  return {
+    slug: article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+    title: article.title,
+    excerpt: article.metadata.excerpt,
+    content: article.content,
+    coverImage: article.metadata.coverImage,
+    date: article.created_at,
+    author: article.metadata.author,
+    tags: article.metadata.tags,
+    category: article.metadata.category
+  };
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
-  const posts = getAllPosts();
-  return posts.find(post => post.slug === slug) || null;
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const { data: articles, error } = await supabase
+    .from('kb_articles')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+
+  console.log('All articles:', articles);
+  
+  const blogPosts = articles.filter(article => article.metadata?.type === 'blog');
+  console.log('Filtered blog posts:', blogPosts);
+  
+  const mappedPosts = blogPosts.map(mapKbArticleToBlogPost);
+  console.log('Mapped blog posts:', mappedPosts);
+  
+  return mappedPosts;
 }
 
-export function getAllCategories(): string[] {
-  const posts = getAllPosts();
-  const categories = new Set(posts.map(post => post.category));
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  const { data: articles, error } = await supabase
+    .from('kb_articles')
+    .select('*')
+    .eq('metadata->>type', 'blog')
+    .ilike('title', slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '))
+    .limit(1);
+
+  if (error || !articles || articles.length === 0) {
+    console.error('Error fetching blog post:', error);
+    return null;
+  }
+
+  return mapKbArticleToBlogPost(articles[0]);
+}
+
+export async function getAllCategories(): Promise<string[]> {
+  const { data: articles, error } = await supabase
+    .from('kb_articles')
+    .select('*')
+    .eq('metadata->>type', 'blog');
+
+  if (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+
+  const categories = new Set(articles.map((article: KbArticle) => article.metadata.category));
   return Array.from(categories).sort();
 }
 
-export function getAllTags(): string[] {
-  const posts = getAllPosts();
-  const tags = new Set(posts.flatMap(post => post.tags));
+export async function getAllTags(): Promise<string[]> {
+  const { data: articles, error } = await supabase
+    .from('kb_articles')
+    .select('*')
+    .eq('metadata->>type', 'blog');
+
+  if (error) {
+    console.error('Error fetching tags:', error);
+    return [];
+  }
+
+  const tags = new Set(articles.flatMap((article: KbArticle) => article.metadata.tags));
   return Array.from(tags).sort();
 }
 
-export function getPostsByCategory(category: string): BlogPost[] {
-  const posts = getAllPosts();
-  return posts.filter(post => post.category === category);
+export async function getPostsByCategory(category: string): Promise<BlogPost[]> {
+  const { data: articles, error } = await supabase
+    .from('kb_articles')
+    .select('*')
+    .eq('metadata->>type', 'blog')
+    .eq('metadata->>category', category)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching posts by category:', error);
+    return [];
+  }
+
+  return articles.map(mapKbArticleToBlogPost);
 }
 
-export function getPostsByTag(tag: string): BlogPost[] {
-  const posts = getAllPosts();
-  return posts.filter(post => post.tags.includes(tag));
+export async function getPostsByTag(tag: string): Promise<BlogPost[]> {
+  const { data: articles, error } = await supabase
+    .from('kb_articles')
+    .select('*')
+    .eq('metadata->>type', 'blog')
+    .contains('metadata->tags', [tag])
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching posts by tag:', error);
+    return [];
+  }
+
+  return articles.map(mapKbArticleToBlogPost);
 }
