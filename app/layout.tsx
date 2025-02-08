@@ -7,6 +7,7 @@ import PreFooterBar from '@/components/common/PreFooterBar';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ThemeToggle from '@/components/common/ThemeToggle';
+import ChatCTA from '@/components/common/ChatCTA';
 import Script from 'next/script';
 
 export const metadata = {
@@ -44,9 +45,30 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Resource hints for external domains */}
+        <link
+          rel="preconnect"
+          href="https://www.googletagmanager.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://www.google-analytics.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://www.googletagmanager.com"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://www.google-analytics.com"
+        />
+
+        {/* Deferred script loading */}
         <Script
           id="gtm-script"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -59,14 +81,16 @@ export default function RootLayout({
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-W99Q4S0HCZ"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-W99Q4S0HCZ');
+            gtag('config', 'G-W99Q4S0HCZ', {
+              send_page_view: false // Defer page view tracking
+            });
           `}
         </Script>
       </head>
@@ -88,6 +112,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <ThemeToggle />
+          <ChatCTA />
         </Providers>
         <Analytics />
         <SpeedInsights />

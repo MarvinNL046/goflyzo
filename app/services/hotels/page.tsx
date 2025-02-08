@@ -1,23 +1,9 @@
-import { Metadata } from "next";
-import ServicePageTemplate from "../../../components/services/ServicePageTemplate";
-import HotelGrid from "../../../components/services/HotelGrid";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Book Hotels Worldwide",
-  description: "Find and book the perfect hotel for your stay. Compare prices, read reviews, and get the best deals on hotels worldwide with GoFlyzo.",
-  openGraph: {
-    title: "Book Hotels Worldwide | GoFlyzo",
-    description: "Find and book the perfect hotel for your stay. Compare prices, read reviews, and get the best deals on hotels worldwide.",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
-        width: 1200,
-        height: 630,
-        alt: "Luxury hotel room",
-      },
-    ],
-  },
-};
+import { useState, useEffect } from "react";
+import ServicePageTemplate from "@/components/services/ServicePageTemplate";
+import ServicePageSkeleton from "@/components/services/ServicePageSkeleton";
+import HotelGrid from "@/components/services/HotelGrid";
 
 const features = [
   {
@@ -108,11 +94,26 @@ const additionalFields = (
 );
 
 export default function HotelsPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <ServicePageSkeleton />;
+  }
+
   return (
     <ServicePageTemplate
       title="Find Your Perfect Stay"
       description="Compare prices from all major hotel booking sites. Get exclusive deals and save on your next stay."
-      heroImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+      heroImage="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80"
       features={features}
       searchLabel="Search Hotels"
       searchPlaceholder="Enter city or hotel name"
