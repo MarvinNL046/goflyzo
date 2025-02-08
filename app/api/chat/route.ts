@@ -1,7 +1,16 @@
 import { anthropic } from '@/lib/ai';
 import { NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 export async function POST(request: Request) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return new NextResponse(
+      JSON.stringify({ error: 'ANTHROPIC_API_KEY is not configured' }),
+      { status: 500 }
+    );
+  }
+
   try {
     const { content, relevantArticles } = await request.json();
 
