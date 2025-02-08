@@ -1,13 +1,46 @@
 import { ChatMessage } from '@/lib/types/chat';
+import { useEffect, useRef, useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 interface ChatMessagesProps {
   messages: ChatMessage[];
 }
 
 export default function ChatMessages({ messages }: ChatMessagesProps) {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [allMessages, setAllMessages] = useState<ChatMessage[]>(messages);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const loadExistingMessages = async () => {
+      const sessionId = localStorage.getItem('chatSessionId');
+      if (sessionId) {
+        const { data } = await supabase
+          .from('chat_messages')
+          .select('*')
+          .eq('session_id', sessionId)
+          .order('created_at', { ascending: true });
+        
+        if (data) {
+          setAllMessages(data);
+        }
+      }
+    };
+
+    loadExistingMessages();
+  }, []);
+
+  useEffect(() => {
+    setAllMessages(messages);
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className="space-y-4">
-      {messages.map((message) => (
+      {allMessages.map((message) => (
         <div
           key={message.id}
           className={`flex ${
@@ -46,6 +79,8 @@ export default function ChatMessages({ messages }: ChatMessagesProps) {
           </div>
         </div>
       ))}
+
+      <div ref={messagesEndRef} />
 
       {messages.length === 0 && (
         <div className="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400 py-8">

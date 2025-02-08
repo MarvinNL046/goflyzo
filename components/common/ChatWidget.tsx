@@ -4,12 +4,19 @@ import { useState } from 'react';
 import { useChat } from '@/app/context/ChatContext';
 import ChatInput from '../chat/ChatInput';
 import ChatMessages from '../chat/ChatMessages';
+import EmailVerificationModal from '../chat/EmailVerificationModal';
 import { MessageCircle, X, Minus, Maximize2 } from 'lucide-react';
+
+const CHAT_ENABLED = false; // Feature flag to control chat visibility
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const { messages, isLoading, error } = useChat();
+  const { messages, isLoading, error, isVerified } = useChat();
+
+  if (!CHAT_ENABLED) {
+    return null;
+  }
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -23,7 +30,7 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-4 right-4 z-[9999]">
       {/* Chat Button */}
       {!isOpen && (
         <button
@@ -38,7 +45,7 @@ export default function ChatWidget() {
       {/* Chat Window */}
       {isOpen && (
         <div
-          className={`bg-white dark:bg-gray-900 rounded-lg shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${
+          className={`bg-white dark:bg-gray-900 rounded-lg shadow-xl transition-all duration-300 ease-in-out overflow-hidden isolate ${
             isMinimized ? 'h-14 w-80' : 'h-[500px] w-[350px]'
           }`}
         >
@@ -56,11 +63,16 @@ export default function ChatWidget() {
           </div>
 
           {/* Chat Content */}
-          {!isMinimized && (
+          {!isMinimized && !isVerified && (
+            <EmailVerificationModal />
+          )}
+          {!isMinimized && isVerified && (
             <>
               {/* Messages */}
-              <div className="h-[380px] overflow-y-auto p-4">
-                <ChatMessages messages={messages} />
+              <div className="h-[380px] overflow-y-auto p-4 flex flex-col">
+                <div className="flex-1">
+                  <ChatMessages messages={messages} />
+                </div>
                 
                 {isLoading && (
                   <div className="flex items-center justify-center py-2">
@@ -82,7 +94,7 @@ export default function ChatWidget() {
               </div>
 
               {/* Input */}
-              <div className="border-t border-gray-200 dark:border-gray-700 p-3">
+              <div className="border-t border-gray-200 dark:border-gray-700 p-3 relative">
                 <ChatInput />
               </div>
             </>

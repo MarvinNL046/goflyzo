@@ -6,6 +6,9 @@ if (!process.env.ANTHROPIC_API_KEY) {
 
 export const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
+  defaultHeaders: {
+    'anthropic-version': '2023-06-01'
+  }
 });
 
 export async function generateLocationContent(country: string) {

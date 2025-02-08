@@ -11,10 +11,17 @@ export default function ChatInput() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!message.trim() || isLoading) return;
+    console.log('Form submitted');
+    
+    if (!message.trim() || isLoading) {
+      console.log('Message empty or loading, skipping submit');
+      return;
+    }
 
     try {
+      console.log('Sending message:', message.trim());
       await sendMessage(message.trim());
+      console.log('Message sent successfully');
       setMessage('');
     } catch (error) {
       console.error('Failed to send message:', error);
@@ -30,7 +37,7 @@ export default function ChatInput() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Ask me anything..."
-          className="flex-1 py-2 px-3 text-sm rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-600"
+          className="flex-1 py-2 px-3 text-sm rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
           disabled={isLoading}
           maxLength={MAX_MESSAGE_LENGTH}
         />
