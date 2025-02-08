@@ -4,7 +4,7 @@
       "name": "Airalo",
       "description": "Get instant mobile data access worldwide with Airalo eSIM. Easy setup, affordable rates, and coverage in 190+ countries.",
       "url": "https://www.airalo.com",
-      "logo": "https://placehold.co/200x100/0066FF/FFFFFF.png?text=Airalo",
+      "logo": "/images/Logo-airalo.svg",
       "primaryColor": "#0066FF",
       "secondaryColor": "#E6F0FF",
       "textColor": "#FFFFFF",

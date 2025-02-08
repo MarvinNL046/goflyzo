@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 import CTAButton from '../common/CTAButton';
 
-interface FlightCardProps {
+export interface FlightCardProps {
   airline: {
     name: string;
     logo: string;

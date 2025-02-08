@@ -2,35 +2,32 @@ import { FC } from 'react';
 import Image from 'next/image';
 import CTAButton from '../common/CTAButton';
 
-interface Coverage {
-  name: string;
-  amount: string;
-  icon: JSX.Element;
+interface DataPlan {
+  data: string;
+  validity: string;
 }
 
-export interface InsuranceCardProps {
+export interface ESIMCardProps {
   provider: {
     name: string;
     logo: string;
   };
-  plan: {
-    name: string;
-    description: string;
-  };
-  coverages: Coverage[];
-  price: {
-    amount: number;
-    period: string;
-  };
+  region: string;
+  description: string;
+  dataPlan: DataPlan;
+  price: number;
+  coverage: string[];
   affiliateLink?: string;
   badge?: string;
 }
 
-const InsuranceCard: FC<InsuranceCardProps> = ({
+const ESIMCard: FC<ESIMCardProps> = ({
   provider,
-  plan,
-  coverages,
+  region,
+  description,
+  dataPlan,
   price,
+  coverage,
   affiliateLink = '#',
   badge,
 }) => {
@@ -52,7 +49,7 @@ const InsuranceCard: FC<InsuranceCardProps> = ({
               {provider.name}
             </span>
             <div className="text-gray-200 text-sm mt-1">
-              {plan.name}
+              {region}
             </div>
           </div>
           {badge && (
@@ -63,29 +60,41 @@ const InsuranceCard: FC<InsuranceCardProps> = ({
         </div>
       </div>
 
-      {/* Plan Details */}
+      {/* Content */}
       <div className="p-6 space-y-6">
         {/* Description */}
         <p className="text-gray-600 dark:text-gray-400 text-sm">
-          {plan.description}
+          {description}
         </p>
 
-        {/* Coverage Details */}
-        <div className="grid gap-4">
-          {coverages.map((coverage, index) => (
-            <div key={index} className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="text-blue-600 dark:text-blue-400 flex-shrink-0">
-                  {coverage.icon}
-                </div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {coverage.name}
-                </span>
-              </div>
-              <span className="font-medium text-gray-900 dark:text-white">
-                {coverage.amount}
-              </span>
+        {/* Data Plan */}
+        <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4">
+          <div className="flex items-center gap-3">
+            <div className="text-blue-600 dark:text-blue-400">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
             </div>
+            <div>
+              <div className="font-medium text-gray-900 dark:text-white">
+                {dataPlan.data}
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Valid for {dataPlan.validity}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Coverage */}
+        <div className="flex flex-wrap gap-2">
+          {coverage.map((country, index) => (
+            <span
+              key={index}
+              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+            >
+              {country}
+            </span>
           ))}
         </div>
 
@@ -93,14 +102,14 @@ const InsuranceCard: FC<InsuranceCardProps> = ({
         <div className="flex items-center justify-between pt-6 border-t dark:border-gray-700">
           <div>
             <div className="text-2xl font-bold text-gray-900 dark:text-white">
-              €{price.amount}
+              €{price}
             </div>
             <div className="text-xs text-gray-500 dark:text-gray-400">
-              per {price.period}
+              One-time payment
             </div>
           </div>
           <CTAButton href={affiliateLink} size="sm">
-            View Plan
+            Get eSIM
           </CTAButton>
         </div>
       </div>
@@ -108,4 +117,4 @@ const InsuranceCard: FC<InsuranceCardProps> = ({
   );
 };
 
-export default InsuranceCard;
+export default ESIMCard;

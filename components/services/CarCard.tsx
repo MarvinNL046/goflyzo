@@ -8,7 +8,7 @@ interface Feature {
   value: string;
 }
 
-interface CarCardProps {
+export interface CarCardProps {
   vehicle: {
     name: string;
     type: string;
