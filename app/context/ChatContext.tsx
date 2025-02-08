@@ -80,9 +80,18 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         },
         body: JSON.stringify({
           content,
-          relevantArticles
+          relevantArticles,
+          sessionId
         }),
       });
+
+      if (response.status === 429) {
+        throw new Error('Please wait a moment before sending another message.');
+      }
+
+      if (response.status === 400) {
+        throw new Error('Message is too long. Please keep your message shorter.');
+      }
 
       const data = await response.json();
       
