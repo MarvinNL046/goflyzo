@@ -15,45 +15,42 @@ export default function ChatMessages({ messages }: ChatMessagesProps) {
           }`}
         >
           <div
-            className={`max-w-[80%] rounded-lg p-4 ${
+            className={`max-w-[85%] rounded-lg p-3 ${
               message.role === 'user'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-blue-600 text-white ml-auto'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
             }`}
           >
-            {/* Message Content */}
-            <div className="prose dark:prose-invert max-w-none">
-              <p className="whitespace-pre-wrap break-words">
-                {message.content}
-              </p>
+            <div className="text-sm whitespace-pre-wrap break-words">
+              {message.content}
             </div>
 
-            {/* Timestamp */}
-            <div className={`mt-1 text-xs ${
-              message.role === 'user'
-                ? 'text-blue-200'
-                : 'text-gray-500 dark:text-gray-400'
-            }`}>
-              {new Date(message.created_at).toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit'
-              })}
-            </div>
-
-            {/* Relevant Articles */}
-            {message.role === 'assistant' && message.relevant_articles.length > 0 && (
-              <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                Sources: {message.relevant_articles.length} articles referenced
+            <div className="flex items-center justify-between mt-1">
+              <div className={`text-[10px] ${
+                message.role === 'user'
+                  ? 'text-blue-200'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}>
+                {new Date(message.created_at).toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}
               </div>
-            )}
+              
+              {message.role === 'assistant' && message.relevant_articles.length > 0 && (
+                <div className="text-[10px] text-gray-500 dark:text-gray-400 ml-2">
+                  {message.relevant_articles.length} sources
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ))}
 
       {messages.length === 0 && (
-        <div className="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400">
+        <div className="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400 py-8">
           <svg
-            className="h-12 w-12 mb-4"
+            className="h-8 w-8 mb-2"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -65,8 +62,8 @@ export default function ChatMessages({ messages }: ChatMessagesProps) {
               d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
             />
           </svg>
-          <p className="text-lg font-medium">No messages yet</p>
-          <p className="text-sm">Start a conversation with Kai</p>
+          <p className="text-sm font-medium">No messages yet</p>
+          <p className="text-xs text-gray-400">Ask me anything about travel!</p>
         </div>
       )}
     </div>

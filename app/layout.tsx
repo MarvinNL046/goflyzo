@@ -7,7 +7,8 @@ import PreFooterBar from '@/components/common/PreFooterBar';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ThemeToggle from '@/components/common/ThemeToggle';
-import ChatCTA from '@/components/common/ChatCTA';
+import ChatWidget from '@/components/common/ChatWidget';
+import { ChatProvider } from './context/ChatContext';
 import Script from 'next/script';
 
 export const metadata = {
@@ -104,15 +105,17 @@ export default function RootLayout({
           />
         </noscript>
         <Providers>
-          <div className="min-h-screen flex flex-col">
-            <TopBar />
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <PreFooterBar />
-            <Footer />
-          </div>
-          <ThemeToggle />
-          <ChatCTA />
+          <ChatProvider>
+            <div className="min-h-screen flex flex-col">
+              <TopBar />
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <PreFooterBar />
+              <Footer />
+            </div>
+            <ThemeToggle />
+            <ChatWidget />
+          </ChatProvider>
         </Providers>
         <Analytics />
         <SpeedInsights />
