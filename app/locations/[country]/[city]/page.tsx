@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const country = decodeURIComponent(params.country);
   const city = decodeURIComponent(params.city);
-  const location = getLocationByCountryAndCity(country, city);
+  const location = await getLocationByCountryAndCity(country, city);
 
   if (!location) {
     return {};
@@ -49,10 +49,10 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default function CityPage({ params }: PageProps) {
+export default async function CityPage({ params }: PageProps) {
   const country = decodeURIComponent(params.country);
   const city = decodeURIComponent(params.city);
-  const location = getLocationByCountryAndCity(country, city);
+  const location = await getLocationByCountryAndCity(country, city);
 
   if (!location) {
     notFound();

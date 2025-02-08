@@ -11,7 +11,8 @@
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "generate-service-areas-sitemap": "node scripts/generate-service-areas-sitemap.js",
     "generate-products-sitemap": "node scripts/generate-products-sitemap.js",
-    "generate-blog-sitemap": "node scripts/generate-blog-sitemap.js"
+    "generate-blog-sitemap": "node scripts/generate-blog-sitemap.js",
+    "migrate-locations": "node --loader ts-node/esm scripts/migrateLocationsToSupabase.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3",
@@ -33,8 +34,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.3",
-    "tailwind-merge": "^3.0.1",
-    "ts-node": "^10.9.2"
+    "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.17.16",
@@ -45,6 +45,7 @@
     "eslint-config-next": "14.2.23",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
 }

@@ -214,11 +214,11 @@ async function generateAllContent(options: GenerationOptions = {}) {
     console.log('\n📋 Initializing content generation...');
     
     // Get all countries
-    const countries = getAllCountries();
+    const countries = await getAllCountries();
     console.log(`📊 Found ${countries.length} countries total`);
 
     // Filter and validate countries
-    let filteredCountries = countries;
+    let filteredCountries = [...countries];
     if (startFrom) {
       console.log(`🔍 Looking for start country: ${startFrom}`);
       const startIndex = countries.findIndex(c => c.toLowerCase() === startFrom.toLowerCase());

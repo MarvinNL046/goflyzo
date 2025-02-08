@@ -1,7 +1,7 @@
 import { getAllLocations } from '@/lib/locations';
 
 export async function GET() {
-  const locations = getAllLocations();
+  const locations = await getAllLocations();
   const staticUrls = [
     { loc: '/', priority: 1.0, changefreq: 'weekly' },
     { loc: '/contact', priority: 0.5, changefreq: 'monthly' },

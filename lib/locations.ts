@@ -1,6 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import { parse } from 'csv-parse/sync';
+import { getServerSupabase } from './supabase';
 
 export interface Location {
   country: string;
@@ -10,56 +8,65 @@ export interface Location {
   services: string;
 }
 
-interface LocationData {
-  locations: Location[];
-  countries: string[];
+export async function getAllLocations(): Promise<Location[]> {
+  const supabase = await getServerSupabase();
+  const { data, error } = await supabase
+    .from('locations')
+    .select('*')
+    .order('country', { ascending: true });
+
+  if (error) {
+    console.error('[Locations] Error fetching locations:', error);
+    return [];
+  }
+
+  return data;
 }
 
-let locationData: LocationData | null = null;
+export async function getAllCountries(): Promise<string[]> {
+  const supabase = await getServerSupabase();
+  const { data, error } = await supabase
+    .from('locations')
+    .select('country')
+    .order('country');
 
-function readCSV(): Location[] {
-  console.log('[Locations] Successfully read CSV file');
-  const filePath = path.join(process.cwd(), 'data', 'csv', 'locations.csv');
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const records = parse(fileContent, {
-    columns: true,
-    skip_empty_lines: true,
-  });
-  console.log(`[Locations] Successfully parsed ${records.length} records from CSV`);
-  return records;
+  if (error) {
+    console.error('[Locations] Error fetching countries:', error);
+    return [];
+  }
+
+  return Array.from(new Set(data.map(loc => loc.country))).sort();
 }
 
-function getLocationData(): LocationData {
-  if (locationData) return locationData;
+export async function getLocationsByCountry(country: string): Promise<Location[]> {
+  const supabase = await getServerSupabase();
+  const { data, error } = await supabase
+    .from('locations')
+    .select('*')
+    .ilike('country', country)
+    .order('city');
 
-  const locations = readCSV();
-  const countries = Array.from(new Set(locations.map(loc => loc.country))).sort();
-  console.log(`[Locations] Found ${countries.length} unique countries`);
+  if (error) {
+    console.error(`[Locations] Error fetching locations for country ${country}:`, error);
+    return [];
+  }
 
-  locationData = { locations, countries };
-  return locationData;
+  return data;
 }
 
-export function getAllLocations(): Location[] {
-  return getLocationData().locations;
-}
+export async function getLocationByCountryAndCity(country: string, city: string): Promise<Location | null> {
+  const supabase = await getServerSupabase();
+  const { data, error } = await supabase
+    .from('locations')
+    .select('*')
+    .ilike('country', country)
+    .ilike('city', city)
+    .single();
 
-export function getAllCountries(): string[] {
-  return getLocationData().countries;
-}
+  if (error) {
+    console.error(`[Locations] Error fetching location for ${city}, ${country}:`, error);
+    return null;
+  }
 
-export function getLocationsByCountry(country: string): Location[] {
-  const locations = getAllLocations().filter(
-    loc => loc.country.toLowerCase() === country.toLowerCase()
-  );
-  console.log(`[Locations] Found ${locations.length} locations for country: ${country}`);
-  return locations;
-}
-
-export function getLocationByCountryAndCity(country: string, city: string): Location | null {
-  return getAllLocations().find(
-    loc => 
-      loc.country.toLowerCase() === country.toLowerCase() && 
-      loc.city.toLowerCase() === city.toLowerCase()
-  ) || null;
+  return data;
 }

@@ -2,31 +2,37 @@ import { getAllCountries } from '@/lib/locations';
 import Link from 'next/link';
 import { generateLocationSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
-export const metadata = {
-  title: 'Travel Destinations | GoFlyzo',
-  description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
-  openGraph: {
-    title: 'Travel Destinations | GoFlyzo',
-    description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
-    images: [
-      {
-        url: 'https://goflyzo.com/api/og?title=Travel+Destinations&subtitle=Explore+amazing+places+around+the+world',
-        width: 1200,
-        height: 630,
-        alt: 'GoFlyzo Travel Destinations',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Travel Destinations | GoFlyzo',
-    description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
-    images: ['https://goflyzo.com/api/og?title=Travel+Destinations&subtitle=Explore+amazing+places+around+the+world'],
-  },
-};
+export async function generateMetadata() {
+  const ogUrl = new URL('https://goflyzo.com/api/og');
+  ogUrl.searchParams.set('title', 'Travel Destinations');
+  ogUrl.searchParams.set('subtitle', 'Explore amazing places around the world');
 
-export default function LocationsPage() {
-  const countries = getAllCountries();
+  return {
+    title: 'Travel Destinations | GoFlyzo',
+    description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
+    openGraph: {
+      title: 'Travel Destinations | GoFlyzo',
+      description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
+      images: [
+        {
+          url: ogUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: 'GoFlyzo Travel Destinations',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Travel Destinations | GoFlyzo',
+      description: 'Explore our curated list of travel destinations around the world. Find local insights, travel tips, and recommendations for your next adventure.',
+      images: [ogUrl.toString()],
+    },
+  };
+}
+
+export default async function LocationsPage() {
+  const countries = await getAllCountries();
 
   // Generate schema data
   const destinationsSchema = generateLocationSchema(

@@ -1,12 +1,12 @@
 import { getAllLocations } from '@/lib/locations';
 
 export async function GET() {
-  const locations = getAllLocations();
+  const locations = await getAllLocations();
   const baseUrl = 'https://goflyzo.com';
 
   // Group locations by country
   const countries = new Map<string, typeof locations>();
-  locations.forEach(location => {
+  locations.forEach((location) => {
     if (!countries.has(location.country)) {
       countries.set(location.country, []);
     }

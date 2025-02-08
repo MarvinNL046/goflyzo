@@ -1,4 +1,4 @@
-import { getLocationsByCountry, getAllCountries } from '@/lib/locations';
+import { getLocationsByCountry } from '@/lib/locations';
 import { getServerSupabase } from '@/lib/supabase';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,16 +12,9 @@ interface PageProps {
   };
 }
 
-export async function generateStaticParams() {
-  const countries = getAllCountries();
-  return countries.map((country) => ({
-    country: country.toLowerCase(),
-  }));
-}
-
 export async function generateMetadata({ params }: PageProps) {
   const country = decodeURIComponent(params.country);
-  const locations = getLocationsByCountry(country);
+  const locations = await getLocationsByCountry(country);
 
   if (!locations.length) {
     return {};
@@ -58,7 +51,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function CountryPage({ params }: PageProps) {
   const country = decodeURIComponent(params.country);
-  const locations = getLocationsByCountry(country);
+  const locations = await getLocationsByCountry(country);
 
   if (!locations.length) {
     notFound();
