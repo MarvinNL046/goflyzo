@@ -84,11 +84,12 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to generate response');
-      }
-
       const data = await response.json();
+      
+      if (!response.ok) {
+        const errorMessage = data.error || 'Failed to generate response';
+        throw new Error(errorMessage);
+      }
 
       // Save assistant message
       const { data: assistantMessage } = await supabase
@@ -108,7 +109,8 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
 
     } catch (error) {
       console.error('Error sending message:', error);
-      setError('Failed to send message. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send message. Please try again.';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
