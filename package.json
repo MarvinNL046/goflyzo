@@ -14,6 +14,8 @@
     "generate-blog-sitemap": "node scripts/generate-blog-sitemap.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.3",
+    "@heroicons/react": "^2.2.0",
     "@supabase/supabase-js": "^2.48.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
@@ -38,6 +40,7 @@
     "@types/node": "^20.17.16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv": "^16.4.7",
     "eslint": "^8",
     "eslint-config-next": "14.2.23",
     "postcss": "^8",
