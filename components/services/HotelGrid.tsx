@@ -1,5 +1,23 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useState, useEffect } from 'react';
 import HotelCard from './HotelCard';
+
+interface HotelData {
+  name: string;
+  location: string;
+  description: string;
+  pricePerNight: number;
+  rating: number;
+  image: string;
+  amenities: Array<{
+    name: string;
+    icon: JSX.Element;
+  }>;
+  affiliateLink?: string;
+  badge?: string;
+  stars: number;
+}
 
 // Common amenity icons
 const amenityIcons = {
@@ -95,21 +113,72 @@ const sampleHotels = [
   },
 ];
 
+interface CategorySection {
+  title: string;
+  description: string;
+  hotels: HotelData[];
+}
+
 const HotelGrid: FC = () => {
+  const [categories, setCategories] = useState<CategorySection[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    // Use sample data
+    setCategories([
+      {
+        title: "Luxury Hotels",
+        description: "Experience the finest 5-star hotels in Amsterdam",
+        hotels: sampleHotels.filter(h => h.stars === 5),
+      },
+      {
+        title: "Best Value",
+        description: "High-quality hotels with excellent prices",
+        hotels: sampleHotels.filter(h => h.stars === 4 && h.pricePerNight < 300),
+      },
+      {
+        title: "Popular Choice",
+        description: "Most booked hotels by our travelers",
+        hotels: sampleHotels.filter(h => h.stars >= 3).slice(0, 6),
+      },
+    ]);
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="py-12 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+            Loading Hotels...
+          </h2>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-12 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-          Popular Hotels
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sampleHotels.map((hotel, index) => (
-            <HotelCard
-              key={index}
-              {...hotel}
-            />
-          ))}
-        </div>
+        {categories.map((category, idx) => (
+          <div key={idx} className="mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              {category.title}
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              {category.description}
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {category.hotels.map((hotel, index) => (
+                <HotelCard
+                  key={index}
+                  {...hotel}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -9,8 +9,9 @@ export const metadata = {
 
 export default function EsimsPage() {
   const airalo = getAffiliate('airalo');
+  const yesim = getAffiliate('yesim');
 
-  if (!airalo) {
+  if (!airalo || !yesim) {
     return null;
   }
 
@@ -62,14 +63,21 @@ export default function EsimsPage() {
         ))}
       </div>
 
-      {/* Provider Section */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-16">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="mb-6 md:mb-0 md:mr-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Our Recommended Provider
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
+      {/* Providers Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {/* Airalo Card */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <div className="flex flex-col items-center">
+            <div className="relative h-16 w-48 mb-6">
+              <Image
+                src={airalo.logo}
+                alt="Airalo Logo"
+                fill
+                sizes="(max-width: 768px) 100vw, 192px"
+                className="object-contain"
+              />
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
               {airalo.description}
             </p>
             <Link
@@ -83,13 +91,33 @@ export default function EsimsPage() {
               Learn More
             </Link>
           </div>
-          <div className="relative h-16 w-48">
-            <Image
-              src={airalo.logo}
-              alt="Airalo Logo"
-              fill
-              className="object-contain"
-            />
+        </div>
+
+        {/* YeSim Card */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <div className="flex flex-col items-center">
+            <div className="relative h-16 w-48 mb-6">
+              <Image
+                src={yesim.logo}
+                alt="YeSim Logo"
+                fill
+                sizes="(max-width: 768px) 100vw, 192px"
+                className="object-contain"
+              />
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+              {yesim.description}
+            </p>
+            <Link
+              href="/yesim"
+              className="inline-block px-8 py-4 rounded-lg font-semibold transition-colors"
+              style={{
+                backgroundColor: yesim.primaryColor,
+                color: yesim.textColor,
+              }}
+            >
+              Learn More
+            </Link>
           </div>
         </div>
       </div>
@@ -100,7 +128,11 @@ export default function EsimsPage() {
           Why Choose eSIM?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {airalo.benefits.slice(0, 3).map((benefit, index) => (
+          {[
+            "No physical SIM card needed",
+            "Instant digital activation",
+            "Keep your existing number",
+          ].map((benefit, index) => (
             <div
               key={index}
               className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import ServicePageTemplate from "@/components/services/ServicePageTemplate";
+import Image from "next/image";
 import ServicePageSkeleton from "@/components/services/ServicePageSkeleton";
 import HotelGrid from "@/components/services/HotelGrid";
 
@@ -35,64 +35,6 @@ const features = [
   },
 ];
 
-const additionalFields = (
-  <>
-    <div>
-      <label htmlFor="check-in" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
-        Check-in
-      </label>
-      <input
-        type="date"
-        name="check-in"
-        id="check-in"
-        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-      />
-    </div>
-    <div>
-      <label htmlFor="check-out" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
-        Check-out
-      </label>
-      <input
-        type="date"
-        name="check-out"
-        id="check-out"
-        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-      />
-    </div>
-    <div>
-      <label htmlFor="guests" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
-        Guests
-      </label>
-      <select
-        id="guests"
-        name="guests"
-        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-      >
-        <option value="1">1 Guest</option>
-        <option value="2">2 Guests</option>
-        <option value="3">3 Guests</option>
-        <option value="4">4 Guests</option>
-        <option value="5">5+ Guests</option>
-      </select>
-    </div>
-    <div>
-      <label htmlFor="rooms" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
-        Rooms
-      </label>
-      <select
-        id="rooms"
-        name="rooms"
-        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-      >
-        <option value="1">1 Room</option>
-        <option value="2">2 Rooms</option>
-        <option value="3">3 Rooms</option>
-        <option value="4">4+ Rooms</option>
-      </select>
-    </div>
-  </>
-);
-
 export default function HotelsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -110,15 +52,55 @@ export default function HotelsPage() {
   }
 
   return (
-    <ServicePageTemplate
-      title="Find Your Perfect Stay"
-      description="Compare prices from all major hotel booking sites. Get exclusive deals and save on your next stay."
-      heroImage="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80"
-      features={features}
-      searchLabel="Search Hotels"
-      searchPlaceholder="Enter city or hotel name"
-      additionalFields={additionalFields}
-      afterHeroContent={<HotelGrid />}
-    />
+    <div>
+      <div className="relative">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80"
+            alt="Hotel hero"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gray-900/50" />
+        </div>
+        <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Find Your Perfect Stay
+          </h1>
+          <p className="mt-6 text-xl text-white max-w-3xl">
+            Compare prices from all major hotel booking sites. Get exclusive deals and save on your next stay.
+          </p>
+        </div>
+      </div>
+
+      <div className="bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => (
+              <div key={feature.title} className="pt-6">
+                <div className="flow-root bg-gray-50 dark:bg-gray-800 rounded-lg px-6 pb-8">
+                  <div className="-mt-6">
+                    <div>
+                      <span className="inline-flex items-center justify-center p-3 bg-blue-600 rounded-md shadow-lg">
+                        {feature.icon}
+                      </span>
+                    </div>
+                    <h3 className="mt-8 text-lg font-medium text-gray-900 dark:text-white tracking-tight">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-5 text-base text-gray-500 dark:text-gray-400">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <HotelGrid />
+    </div>
   );
 }

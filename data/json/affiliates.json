@@ -1,5 +1,38 @@
 {
   "affiliates": {
+    "yesim": {
+      "name": "YeSim",
+      "description": "Get instant mobile data access worldwide with YeSim eSIM. Coverage in 200+ destinations, virtual phone numbers, and 24/7 support.",
+      "url": "https://yesim.tp.st/keC11qPd",
+      "logo": "/images/partners/yesim_alt.webp",
+      "primaryColor": "#FF6B00",
+      "secondaryColor": "#F7F7F7",
+      "textColor": "#FFFFFF",
+      "features": [
+        "Coverage in 200+ destinations",
+        "Virtual phone numbers available",
+        "Free VPN included",
+        "24/7 customer support",
+        "Money-Back Guarantee",
+        "Easy app-based management"
+      ],
+      "benefits": [
+        "No physical SIM card needed",
+        "Instant digital activation",
+        "Flexible regional & global plans",
+        "Competitive pricing",
+        "User-friendly mobile app",
+        "Environmental-friendly solution"
+      ],
+      "cta": {
+        "text": "Get Your eSIM Now",
+        "url": "https://yesim.tp.st/keC11qPd"
+      },
+      "links": {
+        "appStore": "https://yesim.tp.st/YXSla7MO",
+        "mainPage": "https://yesim.tp.st/keC11qPd"
+      }
+    },
     "airalo": {
       "name": "Airalo",
       "description": "Get instant mobile data access worldwide with Airalo eSIM. Easy setup, affordable rates, and coverage in 190+ countries.",
@@ -27,6 +60,10 @@
       "cta": {
         "text": "Get Your eSIM Now",
         "url": "https://www.airalo.com"
+      },
+      "links": {
+        "appStore": "https://airalo.tp.st/vG2gKDGp",
+        "mainPage": "https://airalo.tp.st/U13cYHox"
       }
     }
   }

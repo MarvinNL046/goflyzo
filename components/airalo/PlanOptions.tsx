@@ -81,7 +81,7 @@ export default function PlanOptions() {
               ))}
             </ul>
             <a
-              href={airalo.cta.url}
+              href={airalo.links?.mainPage || airalo.cta.url}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center py-3 rounded-lg font-semibold transition-colors"
