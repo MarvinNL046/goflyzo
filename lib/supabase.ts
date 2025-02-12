@@ -17,17 +17,6 @@ if (!SUPABASE_ANON_KEY) {
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Test the connection
-supabase.from('chat_sessions').select('count', { count: 'exact' }).then(
-  ({ count, error }) => {
-    if (error) {
-      console.error('Supabase connection test failed:', error);
-    } else {
-      console.log('Supabase connection test successful. Chat sessions count:', count);
-    }
-  }
-);
-
 export async function getServerSupabase() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
