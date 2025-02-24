@@ -5,7 +5,7 @@ const nextConfig = {
   compress: true,
   reactStrictMode: true,
   env: {
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    NEXT_PUBLIC_SITE_URL: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000',
     NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
     VERCEL_URL: process.env.VERCEL_URL,
   },
@@ -49,7 +49,6 @@ const nextConfig = {
     optimizeCss: true,
     scrollRestoration: true,
     workerThreads: true,
-    optimisticClientCache: true
   },
   staticPageGenerationTimeout: 180,
   distDir: '.next',
@@ -60,6 +59,9 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  generateBuildId: async () => {
+    return 'build-' + Date.now();
   },
 };
 
