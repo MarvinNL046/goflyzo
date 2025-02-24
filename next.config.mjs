@@ -4,6 +4,9 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
+  env: {
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200],
@@ -46,6 +49,7 @@ const nextConfig = {
     workerThreads: true,
     optimisticClientCache: true,
   },
+  staticPageGenerationTimeout: 180,
 };
 
 export default nextConfig;
