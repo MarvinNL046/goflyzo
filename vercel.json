@@ -1,4 +1,8 @@
 {
+  "buildCommand": "next build && npx tsx scripts/generate-static-sitemap.ts",
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": "https://goflyzo.com"
+  },
   "headers": [
     {
       "source": "/robots.txt",

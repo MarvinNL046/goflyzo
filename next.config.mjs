@@ -50,6 +50,8 @@ const nextConfig = {
     optimisticClientCache: true,
   },
   staticPageGenerationTimeout: 180,
+  output: 'standalone',
+  distDir: '.next',
 };
 
 export default nextConfig;
