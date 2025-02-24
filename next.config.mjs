@@ -51,6 +51,7 @@ const nextConfig = {
     workerThreads: true,
     optimisticClientCache: true,
   },
+  incrementalCacheHandlerPath: './lib/cache-handler.ts',
   staticPageGenerationTimeout: 180,
   output: 'standalone',
   distDir: '.next',
