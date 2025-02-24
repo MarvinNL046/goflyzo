@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Crawl-delay: 1
+Host: https://goflyzo.com
+
+# Important paths with higher crawl priority
+Allow: /blog/
+Allow: /locations/
+Allow: /services/
+
+# Sitemaps
+Sitemap: https://goflyzo.com/sitemap.xml
