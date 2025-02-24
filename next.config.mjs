@@ -52,7 +52,6 @@ const nextConfig = {
     optimisticClientCache: true
   },
   staticPageGenerationTimeout: 180,
-  output: 'standalone',
   distDir: '.next',
   generateEtags: false,
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
