@@ -8,6 +8,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ThemeToggle from '@/components/common/ThemeToggle';
 import ChatWidget from '@/components/common/ChatWidget';
+import AnalyticsTracker from '@/components/common/AnalyticsTracker';
 import { ChatProvider } from './context/ChatContext';
 import Script from 'next/script';
 
@@ -46,6 +47,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Tag Manager - placed as high as possible in head */}
+        <Script
+          id="gtm-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-T5M96XZT');
+            `
+          }}
+        />
+        
         {/* Resource hints for external domains */}
         <link
           rel="preconnect"
@@ -65,37 +81,9 @@ export default function RootLayout({
           rel="dns-prefetch"
           href="https://www.google-analytics.com"
         />
-
-        {/* Deferred script loading */}
-        <Script
-          id="gtm-script"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-T5M96XZT');
-            `
-          }}
-        />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-W99Q4S0HCZ"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-W99Q4S0HCZ', {
-              send_page_view: false // Defer page view tracking
-            });
-          `}
-        </Script>
       </head>
       <body className="antialiased">
+        {/* Google Tag Manager (noscript) - immediately after opening body tag */}
         <noscript>
           <iframe 
             src="https://www.googletagmanager.com/ns.html?id=GTM-T5M96XZT"
@@ -115,6 +103,7 @@ export default function RootLayout({
             </div>
             <ThemeToggle />
             <ChatWidget />
+            <AnalyticsTracker />
           </ChatProvider>
         </Providers>
         <Analytics />
