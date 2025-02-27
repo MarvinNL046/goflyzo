@@ -15,7 +15,6 @@ const Footer: FC = () => {
   ];
 
   const features = [
-    { name: 'AI Travel Assistant', href: '/chat' },
     { name: 'Locations', href: '/locations' },
     { name: 'Blog', href: '/blog' }
   ];
@@ -104,6 +103,14 @@ const Footer: FC = () => {
                   className="text-gray-400 hover:text-blue-400 text-sm"
                 >
                   Airalo eSIM
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/yesim"
+                  className="text-gray-400 hover:text-blue-400 text-sm"
+                >
+                  YeSim eSIM
                 </Link>
               </li>
               <li>
