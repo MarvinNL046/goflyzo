@@ -15,10 +15,7 @@ export interface Affiliate {
     text: string;
     url: string;
   };
-  links?: {
-    appStore?: string;
-    mainPage?: string;
-  };
+  links?: Record<string, string>;
 }
 
 interface AffiliateData {

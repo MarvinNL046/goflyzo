@@ -11,6 +11,7 @@ export default function Header() {
     { name: 'Flights', href: '/services/flights' },
     { name: 'eSIMs', href: '/services/esims' },
     { name: 'Travel Insurance', href: '/services/travel-insurance' },
+    { name: 'Activities', href: '/services/activities' },
     { name: 'Car Rental', href: '/services/car-rental' },
     { name: 'Ferry Services', href: '/services/ferry-services' },
     { name: 'Travel Gear', href: '/services/travel-products' },

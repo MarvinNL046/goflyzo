@@ -7,6 +7,7 @@ const Footer: FC = () => {
     { name: 'Flights', href: '/services/flights' },
     { name: 'eSIMs', href: '/services/esims' },
     { name: 'Travel Insurance', href: '/services/travel-insurance' },
+    { name: 'Activities & Tours', href: '/services/activities' },
     { name: 'Car Rental', href: '/services/car-rental' },
     { name: 'Ferry Services', href: '/services/ferry-services' },
     { name: 'Taxi Services', href: '/services/taxi-services' },

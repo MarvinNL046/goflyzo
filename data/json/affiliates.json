@@ -101,6 +101,42 @@
         "transfers": "https://trip.tp.st/h4kJjHv9",
         "carRental": "https://trip.tp.st/oLwZ3h1y"
       }
+    },
+    "klook": {
+      "name": "Klook",
+      "description": "Discover and book the best things to do in Thailand. From temple tours and cooking classes to island hopping and adventure activities — all with instant confirmation.",
+      "url": "https://klook.tpo.lv/JhskAJW5",
+      "logo": "/images/partners/klook.webp",
+      "primaryColor": "#FF5722",
+      "secondaryColor": "#FFF3E0",
+      "textColor": "#FFFFFF",
+      "features": [
+        "Instant booking confirmation",
+        "Best price guarantee",
+        "Free cancellation on most activities",
+        "24/7 customer support",
+        "Mobile vouchers accepted",
+        "Verified reviews from real travelers"
+      ],
+      "benefits": [
+        "Skip-the-line tickets available",
+        "Exclusive deals and discounts",
+        "Easy mobile booking",
+        "Flexible cancellation policies",
+        "Local expert recommendations",
+        "Secure payment options"
+      ],
+      "cta": {
+        "text": "Explore Activities on Klook",
+        "url": "https://klook.tpo.lv/JhskAJW5"
+      },
+      "links": {
+        "mainPage": "https://klook.tpo.lv/JhskAJW5",
+        "thailand": "https://klook.tpo.lv/aq6ZFxvc",
+        "bangkok": "https://klook.tpo.lv/FXwAY84o",
+        "chiangMai": "https://klook.tpo.lv/SrPrBanh",
+        "phuket": "https://klook.tpo.lv/7Dt6WApj"
+      }
     }
   }
 }
