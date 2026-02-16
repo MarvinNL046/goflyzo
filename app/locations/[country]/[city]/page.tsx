@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { generateLocationSchema, generateBreadcrumbSchema } from '@/lib/schema';
-import KlookWidget from '@/components/services/KlookWidget';
+import ActivitiesWidget from '@/components/services/ActivitiesWidget';
 
 interface PageProps {
   params: {
@@ -129,7 +129,7 @@ export default async function CityPage({ params }: PageProps) {
             </div>
 
             {/* Activities & Tours */}
-            <KlookWidget city={location.city} className="mb-8" />
+            <ActivitiesWidget city={location.city} className="mb-8" />
 
             {/* Back to Country */}
             <Link

@@ -116,6 +116,22 @@ const Footer: FC = () => {
               </li>
               <li>
                 <Link
+                  href="/services/activities"
+                  className="text-gray-400 hover:text-blue-400 text-sm"
+                >
+                  Klook Activities
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/activities"
+                  className="text-gray-400 hover:text-blue-400 text-sm"
+                >
+                  GetYourGuide
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/partner"
                   className="text-gray-400 hover:text-blue-400 text-sm"
                 >

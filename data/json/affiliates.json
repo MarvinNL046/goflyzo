@@ -137,6 +137,41 @@
         "chiangMai": "https://klook.tpo.lv/SrPrBanh",
         "phuket": "https://klook.tpo.lv/7Dt6WApj"
       }
+    },
+    "getyourguide": {
+      "name": "GetYourGuide",
+      "description": "Book incredible tours, activities, and experiences in Thailand with GetYourGuide. Skip-the-line tickets, expert local guides, and hassle-free booking with free cancellation.",
+      "url": "https://getyourguide.tpo.lv/8d41f2Fq",
+      "logo": "/images/partners/getyourguide.webp",
+      "primaryColor": "#004FB4",
+      "secondaryColor": "#E8F0FE",
+      "textColor": "#FFFFFF",
+      "features": [
+        "Expert local guides",
+        "Skip-the-line access",
+        "Free cancellation up to 24h",
+        "24/7 customer support",
+        "Verified traveler reviews",
+        "Instant booking confirmation"
+      ],
+      "benefits": [
+        "Curated experiences by locals",
+        "Small group tour options",
+        "Easy mobile tickets",
+        "Best price guarantee",
+        "Secure online payment",
+        "Last-minute booking available"
+      ],
+      "cta": {
+        "text": "Explore Tours on GetYourGuide",
+        "url": "https://getyourguide.tpo.lv/8d41f2Fq"
+      },
+      "links": {
+        "mainPage": "https://getyourguide.tpo.lv/8d41f2Fq",
+        "thailand": "https://getyourguide.tpo.lv/GuAFfGGK",
+        "bangkok": "https://getyourguide.tpo.lv/PHh5hvej",
+        "kohTao": "https://getyourguide.tpo.lv/6HngJ5FC"
+      }
     }
   }
 }
