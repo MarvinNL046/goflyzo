@@ -138,6 +138,39 @@
         "phuket": "https://klook.tpo.lv/7Dt6WApj"
       }
     },
+    "saily": {
+      "name": "Saily",
+      "description": "Stay connected worldwide with Saily eSIM — built by the makers of NordVPN. Affordable data plans in 150+ countries with easy app-based setup and reliable coverage.",
+      "url": "https://saily.tpo.lv/jneIEAt7",
+      "logo": "/images/partners/saily.svg",
+      "primaryColor": "#1A1A2E",
+      "secondaryColor": "#F0F0F5",
+      "textColor": "#FFFFFF",
+      "features": [
+        "Coverage in 150+ countries",
+        "Built by NordVPN team",
+        "Instant eSIM activation",
+        "24/7 customer support",
+        "Competitive data plans",
+        "Easy app-based setup"
+      ],
+      "benefits": [
+        "No physical SIM card needed",
+        "Trusted cybersecurity brand",
+        "Flexible plan options",
+        "Fast & reliable connections",
+        "User-friendly mobile app",
+        "Secure browsing included"
+      ],
+      "cta": {
+        "text": "Get Saily eSIM",
+        "url": "https://saily.tpo.lv/jneIEAt7"
+      },
+      "links": {
+        "mainPage": "https://saily.tpo.lv/jneIEAt7",
+        "thailand": "https://saily.tpo.lv/rf9lidnE"
+      }
+    },
     "getyourguide": {
       "name": "GetYourGuide",
       "description": "Book incredible tours, activities, and experiences in Thailand with GetYourGuide. Skip-the-line tickets, expert local guides, and hassle-free booking with free cancellation.",

@@ -116,6 +116,14 @@ const Footer: FC = () => {
               </li>
               <li>
                 <Link
+                  href="/services/esims"
+                  className="text-gray-400 hover:text-blue-400 text-sm"
+                >
+                  Saily eSIM
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/services/activities"
                   className="text-gray-400 hover:text-blue-400 text-sm"
                 >

@@ -10,8 +10,9 @@ export const metadata = {
 export default function EsimsPage() {
   const airalo = getAffiliate('airalo');
   const yesim = getAffiliate('yesim');
+  const saily = getAffiliate('saily');
 
-  if (!airalo || !yesim) {
+  if (!airalo || !yesim || !saily) {
     return null;
   }
 
@@ -64,7 +65,7 @@ export default function EsimsPage() {
       </div>
 
       {/* Providers Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         {/* Airalo Card */}
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
           <div className="flex flex-col items-center">
@@ -118,6 +119,36 @@ export default function EsimsPage() {
             >
               Learn More
             </Link>
+          </div>
+        </div>
+
+        {/* Saily Card */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <div className="flex flex-col items-center">
+            <div className="relative h-16 w-48 mb-6">
+              <Image
+                src={saily.logo}
+                alt="Saily Logo"
+                fill
+                sizes="(max-width: 768px) 100vw, 192px"
+                className="object-contain"
+              />
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+              {saily.description}
+            </p>
+            <a
+              href={saily.links?.thailand || saily.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-4 rounded-lg font-semibold transition-colors"
+              style={{
+                backgroundColor: saily.primaryColor,
+                color: saily.textColor,
+              }}
+            >
+              Get Saily eSIM
+            </a>
           </div>
         </div>
       </div>
