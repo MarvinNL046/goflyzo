@@ -28,7 +28,7 @@ const HotelCard: FC<HotelCardProps> = ({
   rating,
   image,
   amenities,
-  affiliateLink = 'https://trip.tpo.lv/9s3sfXXY',
+  affiliateLink = 'https://trip.tp.st/yeelXIdE',
   badge,
   stars,
 }) => {

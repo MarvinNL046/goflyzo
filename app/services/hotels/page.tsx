@@ -87,6 +87,20 @@ export default function HotelsPage() {
             scriptContent={TRIP_HOTELS_WIDGET}
             className="w-full min-h-[200px] bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4"
           />
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="https://trip.tp.st/yeelXIdE" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-md">
+              🏨 Hotels
+            </a>
+            <a href="https://trip.tp.st/DrPeHSFI" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-md">
+              ✈️ Hotel + Flight
+            </a>
+            <a href="https://trip.tp.st/h4kJjHv9" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-md">
+              🚗 Transfers
+            </a>
+            <a href="https://trip.tp.st/oLwZ3h1y" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-md">
+              🚙 Car Rental
+            </a>
+          </div>
         </div>
       </div>
 

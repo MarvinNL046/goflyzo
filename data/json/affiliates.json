@@ -69,7 +69,7 @@
     "tripcom": {
       "name": "Trip.com",
       "description": "Book hotels, flights, and car rentals worldwide with Trip.com. Great deals, flexible booking, and 24/7 support.",
-      "url": "https://trip.tpo.lv/9s3sfXXY",
+      "url": "https://trip.tp.st/yeelXIdE",
       "logo": "/images/partners/tripcom.webp",
       "primaryColor": "#287DFA",
       "secondaryColor": "#E8F1FF",
@@ -92,12 +92,14 @@
       ],
       "cta": {
         "text": "Book Now on Trip.com",
-        "url": "https://trip.tpo.lv/9s3sfXXY"
+        "url": "https://trip.tp.st/yeelXIdE"
       },
       "links": {
-        "hotels": "https://trip.tpo.lv/9s3sfXXY",
+        "hotels": "https://trip.tp.st/yeelXIdE",
         "flights": "https://trip.tpo.lv/mG4HaNBx",
-        "carRental": "https://trip.tpo.lv/zF1ttOqe"
+        "hotelFlight": "https://trip.tp.st/DrPeHSFI",
+        "transfers": "https://trip.tp.st/h4kJjHv9",
+        "carRental": "https://trip.tp.st/oLwZ3h1y"
       }
     }
   }

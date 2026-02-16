@@ -10,32 +10,29 @@ const FlightSidebar: FC = () => {
           <p className="text-sm text-gray-600 mt-1">
             Doorzoek resultaten van de beste hotelkies hier op Skyscanner.
           </p>
-          <a href="https://trip.tpo.lv/9s3sfXXY" target="_blank" rel="noopener noreferrer" className="block w-full mt-4 bg-[#1a2332] text-white py-2 px-4 rounded-lg hover:bg-opacity-90 text-center">
+          <a href="https://trip.tp.st/yeelXIdE" target="_blank" rel="noopener noreferrer" className="block w-full mt-4 bg-[#1a2332] text-white py-2 px-4 rounded-lg hover:bg-opacity-90 text-center">
             Hotels verkennen
           </a>
         </div>
       </div>
 
-      {/* Car Rental Banner */}
+      {/* Trip.com Quick Links */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
         <div className="p-4">
-          <h3 className="font-semibold text-lg">Autoverhuur in Bangkok</h3>
+          <h3 className="font-semibold text-lg">Boek via Trip.com</h3>
           <p className="text-sm text-gray-600 mt-1">
-            Ga verder dan vluchten. Vind ook aanbiedingen voor huurauto&apos;s.
+            Vind de beste deals voor je reis
           </p>
-          <div className="mt-4 relative">
-            <div className="h-[150px] rounded-lg bg-gray-100 flex items-center justify-center">
-              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent text-white">
-              <div className="text-sm">Autohuur</div>
-              <div className="flex justify-between items-center">
-                <span>vanaf</span>
-                <span className="font-semibold">21 € per dag</span>
-              </div>
-            </div>
+          <div className="mt-4 flex flex-col gap-2">
+            <a href="https://trip.tp.st/DrPeHSFI" target="_blank" rel="noopener noreferrer" className="block w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-center text-sm font-medium">
+              ✈️ Hotel + Vlucht
+            </a>
+            <a href="https://trip.tp.st/h4kJjHv9" target="_blank" rel="noopener noreferrer" className="block w-full bg-[#1a2332] text-white py-2 px-4 rounded-lg hover:bg-opacity-90 text-center text-sm font-medium">
+              🚗 Transfers
+            </a>
+            <a href="https://trip.tp.st/oLwZ3h1y" target="_blank" rel="noopener noreferrer" className="block w-full bg-[#1a2332] text-white py-2 px-4 rounded-lg hover:bg-opacity-90 text-center text-sm font-medium">
+              🚙 Autoverhuur
+            </a>
           </div>
         </div>
       </div>

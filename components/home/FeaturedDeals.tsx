@@ -35,7 +35,7 @@ const featuredDeals = {
     ],
     stars: 5,
     badge: "Best Seller",
-    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
+    affiliateLink: "https://trip.tp.st/yeelXIdE",
   },
   flight: {
     airline: {
@@ -151,7 +151,7 @@ const featuredDeals = {
     },
     location: "Barcelona Airport",
     badge: "Best Value",
-    affiliateLink: "https://trip.tpo.lv/zF1ttOqe",
+    affiliateLink: "https://trip.tp.st/oLwZ3h1y",
   },
   esim: {
     provider: {
@@ -178,7 +178,7 @@ const featuredDeals = {
     category: "Bags",
     badge: "Top Rated",
     inStock: true,
-    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
+    affiliateLink: "https://trip.tp.st/yeelXIdE",
   },
 };
 
