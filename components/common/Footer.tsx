@@ -12,6 +12,7 @@ const Footer: FC = () => {
     { name: 'Ferry Services', href: '/services/ferry-services' },
     { name: 'Taxi Services', href: '/services/taxi-services' },
     { name: 'Train Services', href: '/services/train-services' },
+    { name: 'Travel Security', href: '/services/travel-security' },
     { name: 'Travel Products', href: '/services/travel-products' },
   ];
 
@@ -136,6 +137,22 @@ const Footer: FC = () => {
                   className="text-gray-400 hover:text-blue-400 text-sm"
                 >
                   GetYourGuide
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/travel-security"
+                  className="text-gray-400 hover:text-blue-400 text-sm"
+                >
+                  NordVPN
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/travel-security"
+                  className="text-gray-400 hover:text-blue-400 text-sm"
+                >
+                  NordPass
                 </Link>
               </li>
               <li>

@@ -138,6 +138,70 @@
         "phuket": "https://klook.tpo.lv/7Dt6WApj"
       }
     },
+    "nordvpn": {
+      "name": "NordVPN",
+      "description": "Protect your online privacy while traveling with NordVPN. Secure public Wi-Fi connections, access content from home, and browse safely from anywhere in the world.",
+      "url": "https://nordvpn.tpo.lv/ekHF1i55",
+      "logo": "/images/partners/nordvpn.svg",
+      "primaryColor": "#4687FF",
+      "secondaryColor": "#E8F0FF",
+      "textColor": "#FFFFFF",
+      "features": [
+        "9000+ servers in 118 countries",
+        "Up to 10 devices simultaneously",
+        "Threat Protection against malware",
+        "30-day money-back guarantee",
+        "24/7 customer support",
+        "No-logs policy (audited)"
+      ],
+      "benefits": [
+        "Secure public Wi-Fi at airports & hotels",
+        "Access home content while abroad",
+        "Post-quantum encryption",
+        "Lightning-fast connection speeds",
+        "Built-in ad & tracker blocker",
+        "Works on all devices & platforms"
+      ],
+      "cta": {
+        "text": "Get NordVPN",
+        "url": "https://nordvpn.tpo.lv/ekHF1i55"
+      },
+      "links": {
+        "mainPage": "https://nordvpn.tpo.lv/ekHF1i55"
+      }
+    },
+    "nordpass": {
+      "name": "NordPass",
+      "description": "Never forget a password again while traveling. NordPass securely stores and autofills your passwords, credit cards, and personal info across all your devices.",
+      "url": "https://nordvpn.tpo.lv/tp12zNjC",
+      "logo": "/images/partners/nordpass.svg",
+      "primaryColor": "#00CFB6",
+      "secondaryColor": "#E6FBF7",
+      "textColor": "#FFFFFF",
+      "features": [
+        "XChaCha20 encryption",
+        "Zero-knowledge architecture",
+        "Password health reports",
+        "Data breach scanner",
+        "Secure password sharing",
+        "Built-in authenticator"
+      ],
+      "benefits": [
+        "Autofill booking & login details instantly",
+        "Store travel documents securely",
+        "Access passwords on any device",
+        "Generate strong unique passwords",
+        "Share credentials safely with travel partners",
+        "Protect against credential theft"
+      ],
+      "cta": {
+        "text": "Get NordPass",
+        "url": "https://nordvpn.tpo.lv/tp12zNjC"
+      },
+      "links": {
+        "mainPage": "https://nordvpn.tpo.lv/tp12zNjC"
+      }
+    },
     "saily": {
       "name": "Saily",
       "description": "Stay connected worldwide with Saily eSIM — built by the makers of NordVPN. Affordable data plans in 150+ countries with easy app-based setup and reliable coverage.",

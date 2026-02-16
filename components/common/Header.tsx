@@ -14,6 +14,7 @@ export default function Header() {
     { name: 'Activities', href: '/services/activities' },
     { name: 'Car Rental', href: '/services/car-rental' },
     { name: 'Ferry Services', href: '/services/ferry-services' },
+    { name: 'Travel Security', href: '/services/travel-security' },
     { name: 'Travel Gear', href: '/services/travel-products' },
     { name: 'Destinations', href: '/locations' },
     { name: 'Blog', href: '/blog' },
