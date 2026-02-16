@@ -35,7 +35,7 @@ const featuredDeals = {
     ],
     stars: 5,
     badge: "Best Seller",
-    affiliateLink: "#",
+    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
   },
   flight: {
     airline: {
@@ -60,6 +60,7 @@ const featuredDeals = {
       checked: true,
     },
     badge: "Popular Route",
+    affiliateLink: "https://trip.tpo.lv/mG4HaNBx",
   },
   insurance: {
     provider: {
@@ -150,6 +151,7 @@ const featuredDeals = {
     },
     location: "Barcelona Airport",
     badge: "Best Value",
+    affiliateLink: "https://trip.tpo.lv/zF1ttOqe",
   },
   esim: {
     provider: {
@@ -165,7 +167,7 @@ const featuredDeals = {
     price: 24.99,
     coverage: ["France", "Germany", "Italy", "Spain", "Netherlands"],
     badge: "Best Value",
-    affiliateLink: "#",
+    affiliateLink: "https://airalo.tp.st/U13cYHox",
   },
   product: {
     name: "Premium Travel Backpack",
@@ -176,7 +178,7 @@ const featuredDeals = {
     category: "Bags",
     badge: "Top Rated",
     inStock: true,
-    affiliateLink: "#",
+    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
   },
 };
 

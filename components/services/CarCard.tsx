@@ -34,7 +34,7 @@ const CarCard: FC<CarCardProps> = ({
   features,
   price,
   location,
-  affiliateLink = '#',
+  affiliateLink = 'https://trip.tpo.lv/zF1ttOqe',
   badge,
 }) => {
   return (

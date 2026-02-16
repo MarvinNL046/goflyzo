@@ -74,6 +74,22 @@ export default function RootLayout({
           }}
         />
         
+        {/* Travelpayouts Drive - AI-powered monetization */}
+        <Script
+          id="travelpayouts-drive"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                  var script = document.createElement("script");
+                  script.async = 1;
+                  script.src = 'https://emrldco.com/Mzg0NTk1.js?t=384595';
+                  document.head.appendChild(script);
+              })();
+            `
+          }}
+        />
+
         {/* Resource hints for external domains */}
         <link
           rel="preconnect"

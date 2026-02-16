@@ -69,6 +69,14 @@ const sampleFlights = [
         rating: 3,
         reviews: 2119,
         features: ["24/7 klantenservice"]
+      },
+      {
+        name: "Trip.com",
+        price: 1039,
+        rating: 4,
+        reviews: 5280,
+        features: ["24/7 klantenservice", "Gratis annuleren"],
+        url: "https://trip.tpo.lv/mG4HaNBx"
       }
     ]
   },
@@ -118,6 +126,14 @@ const sampleFlights = [
         rating: 5,
         reviews: 4452,
         features: ["Nu kopen, later betalen"]
+      },
+      {
+        name: "Trip.com",
+        price: 1055,
+        rating: 4,
+        reviews: 5280,
+        features: ["24/7 klantenservice", "Gratis annuleren"],
+        url: "https://trip.tpo.lv/mG4HaNBx"
       }
     ]
   }

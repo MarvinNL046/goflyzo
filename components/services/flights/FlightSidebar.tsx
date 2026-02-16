@@ -10,9 +10,9 @@ const FlightSidebar: FC = () => {
           <p className="text-sm text-gray-600 mt-1">
             Doorzoek resultaten van de beste hotelkies hier op Skyscanner.
           </p>
-          <button className="w-full mt-4 bg-[#1a2332] text-white py-2 px-4 rounded-lg hover:bg-opacity-90">
+          <a href="https://trip.tpo.lv/9s3sfXXY" target="_blank" rel="noopener noreferrer" className="block w-full mt-4 bg-[#1a2332] text-white py-2 px-4 rounded-lg hover:bg-opacity-90 text-center">
             Hotels verkennen
-          </button>
+          </a>
         </div>
       </div>
 

@@ -144,6 +144,7 @@ export default function CarRentalPage() {
       searchPlaceholder="Enter pickup location"
       additionalFields={additionalFields}
       afterHeroContent={<CarGrid />}
+      affiliateLink="https://trip.tpo.lv/zF1ttOqe"
     />
   );
 }

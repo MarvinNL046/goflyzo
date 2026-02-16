@@ -1,4 +1,7 @@
 import { FC, ReactNode } from 'react';
+import AffiliateWidget from '../../common/AffiliateWidget';
+
+const TRIP_FLIGHTS_WIDGET = '<script async src="https://tpembd.com/content?trs=384595&shmarker=602467&locale=en&curr=USD&powered_by=true&border_radius=3&plain=true&color_button=%232681ff&color_button_text=%23ffffff&color_border=%232681ff&promo_id=4132&campaign_id=121" charset="utf-8"></script>';
 
 interface FlightSearchLayoutProps {
   filters: ReactNode;
@@ -81,6 +84,17 @@ const FlightSearchLayout: FC<FlightSearchLayoutProps> = ({
               Zoeken
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* Trip.com Flight Search Widget */}
+      <div className="max-w-7xl mx-auto px-4 pt-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Search Flights on Trip.com</h3>
+          <AffiliateWidget
+            scriptContent={TRIP_FLIGHTS_WIDGET}
+            className="w-full min-h-[200px]"
+          />
         </div>
       </div>
 

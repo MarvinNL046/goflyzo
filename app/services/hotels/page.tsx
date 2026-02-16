@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import ServicePageSkeleton from "@/components/services/ServicePageSkeleton";
 import HotelGrid from "@/components/services/HotelGrid";
+import AffiliateWidget from "@/components/common/AffiliateWidget";
+
+const TRIP_HOTELS_WIDGET = '<script async src="https://tpembd.com/content?trs=384595&shmarker=602467&lang=www&layout=S10391&powered_by=true&campaign_id=121&promo_id=4038" charset="utf-8"></script>';
 
 const features = [
   {
@@ -71,6 +74,19 @@ export default function HotelsPage() {
           <p className="mt-6 text-xl text-white max-w-3xl">
             Compare prices from all major hotel booking sites. Get exclusive deals and save on your next stay.
           </p>
+        </div>
+      </div>
+
+      {/* Trip.com Hotel Search Widget */}
+      <div className="bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            Search Hotels on Trip.com
+          </h2>
+          <AffiliateWidget
+            scriptContent={TRIP_HOTELS_WIDGET}
+            className="w-full min-h-[200px] bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4"
+          />
         </div>
       </div>
 

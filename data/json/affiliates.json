@@ -65,6 +65,40 @@
         "appStore": "https://airalo.tp.st/vG2gKDGp",
         "mainPage": "https://airalo.tp.st/U13cYHox"
       }
+    },
+    "tripcom": {
+      "name": "Trip.com",
+      "description": "Book hotels, flights, and car rentals worldwide with Trip.com. Great deals, flexible booking, and 24/7 support.",
+      "url": "https://trip.tpo.lv/9s3sfXXY",
+      "logo": "/images/partners/tripcom.webp",
+      "primaryColor": "#287DFA",
+      "secondaryColor": "#E8F1FF",
+      "textColor": "#FFFFFF",
+      "features": [
+        "Hotels in 200+ countries",
+        "Flights to 5000+ cities",
+        "Car rental worldwide",
+        "24/7 customer support",
+        "Free cancellation options",
+        "Best price guarantee"
+      ],
+      "benefits": [
+        "Competitive pricing",
+        "Flexible booking options",
+        "Verified guest reviews",
+        "Instant confirmation",
+        "Multiple payment methods",
+        "Loyalty rewards program"
+      ],
+      "cta": {
+        "text": "Book Now on Trip.com",
+        "url": "https://trip.tpo.lv/9s3sfXXY"
+      },
+      "links": {
+        "hotels": "https://trip.tpo.lv/9s3sfXXY",
+        "flights": "https://trip.tpo.lv/mG4HaNBx",
+        "carRental": "https://trip.tpo.lv/zF1ttOqe"
+      }
     }
   }
 }

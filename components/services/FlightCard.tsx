@@ -36,7 +36,7 @@ const FlightCard: FC<FlightCardProps> = ({
   stops,
   price,
   baggage,
-  affiliateLink = '#',
+  affiliateLink = 'https://trip.tpo.lv/mG4HaNBx',
   badge,
 }) => {
   return (

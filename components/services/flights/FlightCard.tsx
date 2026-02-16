@@ -45,6 +45,7 @@ interface FlightCardProps {
     rating?: number;
     reviews?: number;
     features?: string[];
+    url?: string;
   }>;
 }
 
@@ -184,9 +185,15 @@ const FlightCard: FC<FlightCardProps> = ({
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">€{provider.price}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">per persoon</div>
               </div>
-              <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow-md">
-                Selecteren
-              </button>
+              {provider.url ? (
+                <a href={provider.url} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow-md inline-block">
+                  Selecteren
+                </a>
+              ) : (
+                <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow-md">
+                  Selecteren
+                </button>
+              )}
             </div>
           </div>
         ))}

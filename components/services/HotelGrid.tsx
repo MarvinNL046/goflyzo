@@ -66,6 +66,7 @@ const sampleHotels = [
     ],
     badge: "Free Cancellation",
     stars: 5,
+    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
   },
   {
     name: "Boutique Canal House",
@@ -80,6 +81,7 @@ const sampleHotels = [
     ],
     badge: "Breakfast Included",
     stars: 4,
+    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
   },
   {
     name: "Modern City Suites",
@@ -94,6 +96,7 @@ const sampleHotels = [
       { name: "Gym", icon: amenityIcons.gym },
     ],
     stars: 4,
+    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
   },
   {
     name: "Harbor View Hotel",
@@ -110,6 +113,7 @@ const sampleHotels = [
     ],
     badge: "Best View",
     stars: 5,
+    affiliateLink: "https://trip.tpo.lv/9s3sfXXY",
   },
 ];
 
